@@ -1,7 +1,7 @@
 
 package map;
 
-public class smallMap {
+public class SmallMap {
 	private Object[][] smallMap;
 	public int startRowIndexForSmallMap;
 	public int endRowIndexForSmallMap;
@@ -54,13 +54,35 @@ public class smallMap {
 		
 		
 	}
+	public Object[][] createNextSmallMap(int rowIndexBigMap, int colIndexBigMap) {
+		resetTheSmallMap();
+		float xPosition=0;
+		float yPosition=0;
+		for (int row = 0; row < 15; row++) {
+			for (int col = 0; col < 15; col++) {
+
+				int type = getPiece(rowIndexBigMap, colIndexBigMap, row, col);
+			
+				OnePiece onePiece = new OnePiece(type,xPosition,yPosition);
+				onePiece.setPenetration(type);
+				this.smallMap[row][col] = onePiece;
+				
+				onePiece = null;
+				xPosition += 46;
+			}
+			xPosition = 0;
+			yPosition += 46;
+		}
+		
+		return this.smallMap;
+	}
 	public int getMiddleRowIndex(){
 		return this.middleRowIndex;
 	}
 	public int getMiddleColIndex(){
 		return this.middleColIndex;
 	}
-	public smallMap() {
+	public SmallMap() {
 
 		this.startRowIndexForSmallMap = 0;
 		this.endRowIndexForSmallMap = 1;
