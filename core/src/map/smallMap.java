@@ -1,5 +1,5 @@
 
-package smallMap;
+package map;
 
 public class smallMap {
 	private Object[][] smallMap;
