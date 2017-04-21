@@ -7,6 +7,10 @@ import com.roadtovalhalla.game.RoadToValhalla;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new RoadToValhalla(), config);
-	}
+	
+	config.width = RoadToValhalla.SCREEN_WIDTH;
+	config.height = RoadToValhalla.SCREEN_HEIGHT;
+	config.title = RoadToValhalla.GAME_NAME;
+	new LwjglApplication(new RoadToValhalla(), config);
+}
 }
