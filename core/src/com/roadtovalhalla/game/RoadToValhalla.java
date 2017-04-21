@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import map.SmallMap;
+import map.WholeMap;
 
 public class RoadToValhalla extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -14,17 +15,18 @@ public class RoadToValhalla extends ApplicationAdapter {
 	public final static int SCREEN_WIDTH = 690;
 	public final static int SCREEN_HEIGHT = 690;
 	public static final String GAME_NAME = "Road to Valhalla";
-	public Object[][] wholeMap;
+	public Object[][] wholeMapArray;
 
 	public Object[][] map;
-
-
+	public WholeMap wholeMap;
 	public SmallMap smallMap;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-
+		smallMap.initializingSmallMap();
+		wholeMap = new WholeMap();
+		wholeMap.initializingBigMap();
 	}
 
 	@Override
