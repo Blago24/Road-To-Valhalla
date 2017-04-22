@@ -2,6 +2,7 @@ package com.roadtovalhalla.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetLoaderParameters.LoadedCallback;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,6 +11,8 @@ import map.InteracterPlayerMap;
 import map.SmallMap;
 import map.WholeMap;
 import models.Hero;
+import sizes.SizesOfObjectsOnTheMap;
+import textures.LoadTexturesForMap;
 
 public class RoadToValhalla extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -23,22 +26,32 @@ public class RoadToValhalla extends ApplicationAdapter {
 	public WholeMap wholeMap;
 	public SmallMap smallMap;
 	public Hero hero;
+	public LoadTexturesForMap loadTexturesForMap;
+	public SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap;
 
 	public InteracterPlayerMap interacterPlayerMap;
 	
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		smallMap= new SmallMap();
+				batch = new SpriteBatch();
+		loadTexturesForMap = new LoadTexturesForMap();
+		smallMap = new SmallMap();
 		smallMap.initializingSmallMap();
+		
+		sizesOfObjectsOnTheMap = new SizesOfObjectsOnTheMap();
 		wholeMap = new WholeMap();
 		wholeMap.initializingBigMap();
+
+		System.out.println("opa");
+		wholeMap.createMap(smallMap);
+		System.out.println("dpdaa");
+		this.wholeMapArray = wholeMap.getMap();
 		interacterPlayerMap = new InteracterPlayerMap(0, 0);
-		
+		//map = backgrArray.createNextSmallMapBeforeWholeIsLoaded(0, 0);
 		hero = new Hero(smallMap.getMiddleYPosition(), smallMap.getMiddleXPosition(),
 				smallMap.getMiddleRowIndex(), smallMap.getMiddleColIndex());
-	}
+}
 
 	@Override
 	public void render () {

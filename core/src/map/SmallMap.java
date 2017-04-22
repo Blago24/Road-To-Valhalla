@@ -1,6 +1,11 @@
 
 package map;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import sizes.SizesOfObjectsOnTheMap;
+import textures.LoadTexturesForMap;
+
 public class SmallMap {
 	private Object[][] smallMap;
 	public int startRowIndexForSmallMap;
@@ -69,8 +74,8 @@ public class SmallMap {
 		return ((OnePiece) this.smallMap[getMiddleRowIndex()][getMiddleColIndex()]).getyPosition();
 	}
 
-public BackgrArray() {
-
+public SmallMap() {
+	
 	this.startRowIndexForSmallMap = 0;
 	this.endRowIndexForSmallMap = 1;
 	this.startColIndexForSmallMap = 0;
@@ -83,7 +88,7 @@ public BackgrArray() {
 		this.smallMap = new Object[15][15];
 	}
 
-	public Object[][] createNextSmallMapBeforeWholeIsLoaded(int rowIndexBigMap, int colIndexBigMap) {
+	public Object[][] createNextSmallMap(int rowIndexBigMap, int colIndexBigMap) {
 		resetTheSmallMap();
 		float xPosition = 0;
 		float yPosition = 0;
@@ -138,7 +143,7 @@ public BackgrArray() {
 			for (int j = 0; j < 15; j++) {
 				int type = ((OnePiece) array[i][j]).getType();
 
-				if (type != 0 && type != 1 && type != 2 && type != 3) {
+				if (type != 0 && type != 1 && type != 2 ) {
 					batch.draw(loadTexturesForMap.checkTheTypeForHighestLevel(type),
 							((OnePiece) array[i][j]).getxPosition(), ((OnePiece) array[i][j]).getyPosition(),
 							sizesOfObjectsOnTheMap.checkTheTypeForWidth(type),
@@ -152,7 +157,7 @@ public BackgrArray() {
 	}
 
 	public Object[][] newMap(int rowIndexBigMap, int colIndexBigMap) {
-		return createNextSmallMapBeforeWholeIsLoaded(rowIndexBigMap, colIndexBigMap);
+		return createNextSmallMap(rowIndexBigMap, colIndexBigMap);
 
 	}
 
@@ -286,8 +291,8 @@ public BackgrArray() {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 3, 1, 1, 1, 1, 1, 2, 2, 1, 1, 10, 1, 1, 1 }, { 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1 },
-			{ 1, 3, 1, 1, 7, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 7, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 	private int smallMapZeroOne[][] = { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },

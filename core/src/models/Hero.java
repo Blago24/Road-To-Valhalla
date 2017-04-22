@@ -17,10 +17,11 @@ public class Hero {
 	int heroMapColPositionForMovement;
 
 	Texture front;
-	Texture frontLeftSmallStep;
-	Texture frontLeftBigStep;
-	Texture frontRightSmallStep;
-	Texture frontRightBigStep;
+	Texture frontLeftStep;
+	Texture frontRightStep;
+	
+	
+
 	Texture left;
 	Texture leftLeftStep;
 	Texture leftRightStep;
@@ -66,10 +67,9 @@ public class Hero {
 
 		this.front = new Texture("heroImages//Front.png");
 
-		this.frontLeftSmallStep = new Texture("heroImages//frontLeftSmallStep.png");
-		this.frontLeftBigStep = new Texture("heroImages//frontLeftBigStep.png");
-		this.frontRightSmallStep = new Texture("heroImages//frontRightSmallStep.png");
-		this.frontRightBigStep = new Texture("heroImages//frontRightBigStep.png");
+		this.frontLeftStep = new Texture("heroImages//Front-LeftStep.png");
+		
+		this.frontRightStep = new Texture("heroImages//Front-RightStep.png");
 
 		this.left = new Texture("heroImages//Left.png");
 		this.leftLeftStep = new Texture("heroImages//Left-LeftStep.png");
@@ -147,35 +147,19 @@ public class Hero {
 			return true;
 		} else if (checkForDirection() == -2) {
 
-			if (getOldYPositionForMovement() - getyPositionForMovement() < 30) {
-				batch.draw(getFrontLeftSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
+			if (getOldYPositionForMovement() - getyPositionForMovement() < 50) {
+				batch.draw(getFrontLeftStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
 
-			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 30
-					&& getOldYPositionForMovement() - getyPositionForMovement() < 60) {
-				batch.draw(getFrontLeftBigStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
-
-			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 60
-					&& getOldYPositionForMovement() - getyPositionForMovement() < 90) {
-				batch.draw(getFrontLeftSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
-
-			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 90
-					&& getOldYPositionForMovement() - getyPositionForMovement() < 120) {
-				batch.draw(getFrontRightSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
-
-			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 120
-					&& getOldYPositionForMovement() - getyPositionForMovement() < 150) {
-				batch.draw(getFrontRightBigStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
-
-			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 150) {
-				batch.draw(getFrontRightSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() > 50) {
+				batch.draw(getFrontRightStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
 
 			}
-			if (getOldYPositionForMovement() - getyPositionForMovement() >= 180) {
+			if (getOldYPositionForMovement() - getyPositionForMovement() >= 100) {
 				oldYPositionForMovement = yPositionForMovement;
 			}
-
 			moveBot();
 			return true;
+		
 		}
 		return false;
 	}
@@ -213,21 +197,7 @@ public class Hero {
 
 	}
 
-	public Texture getFrontLeftSmallStep() {
-		return frontLeftSmallStep;
-	}
 
-	public Texture getFrontLeftBigStep() {
-		return frontLeftBigStep;
-	}
-
-	public Texture getFrontRightSmallStep() {
-		return frontRightSmallStep;
-	}
-
-	public Texture getFrontRightBigStep() {
-		return frontRightBigStep;
-	}
 
 	public float getOldXPositionForMovement() {
 		return oldXPositionForMovement;
@@ -358,7 +328,18 @@ public class Hero {
 	public void setLeftRightStep(Texture leftRightStep) {
 		this.leftRightStep = leftRightStep;
 	}
-
+	public Texture getFrontRightStep() {
+		return frontRightStep;
+	}
+	public void setFrontRightStep(Texture frontRightStep) {
+		this.frontRightStep = frontRightStep;
+	}
+	public Texture getFrontLeftStep() {
+		return frontLeftStep;
+	}
+	public void setFrontLeftStep(Texture frontLeftStep) {
+		this.frontLeftStep = frontLeftStep;
+	}
 	public Texture getRight() {
 		return right;
 	}
