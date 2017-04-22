@@ -34,32 +34,21 @@ public class Hero {
 
 	public Hero() {
 	}
-<<<<<<< HEAD
+
 	public void centralizedThePositionForCollision(float xPositionForMovement, float yPositionForMovement){
 		setOldXPositionForCollision(xPositionForMovement);
 		setOldYPositionForCollision(yPositionForMovement);
 	
 	}
 
-=======
->>>>>>> 010460fdf1d1b51a67f4a3c2fe16ee234ec485c9
 
 	public Hero(float xPositionForMovement, float yPositionForMovement, int heroMapRowPositionForMovement,
 			int heroMapColPositionForMovement) {
 
-<<<<<<< HEAD
-
 		this.xPositionForMovement = xPositionForMovement+23;
 		this.yPositionForMovement = yPositionForMovement+23;
 		centralizedThePositionForCollision(this.xPositionForMovement,this. yPositionForMovement);
-=======
-		this.xPositionForMovement = xPositionForMovement;
-		this.yPositionForMovement = yPositionForMovement;
-		this.oldXPositionForMovement = xPositionForMovement;
-		this.oldYPositionForMovement = yPositionForMovement;
-		this.oldXPositionForCollision = xPositionForMovement;
-		this.oldYPositionForCollision = yPositionForMovement;
->>>>>>> 010460fdf1d1b51a67f4a3c2fe16ee234ec485c9
+
 		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement;
 		this.heroMapColPositionForMovement = heroMapColPositionForMovement;
 
@@ -148,13 +137,7 @@ public class Hero {
 			return true;
 		} else if (checkForDirection() == -2) {
 
-<<<<<<< HEAD
-			if (getOldYPositionForMovement() - getyPositionForMovement() < 50) {
-				batch.draw(getFrontLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
 
-			} else if (getOldYPositionForMovement() - getyPositionForMovement() > 50) {
-				batch.draw(getFrontRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
-=======
 			if (getOldYPositionForMovement() - getyPositionForMovement() < 30) {
 				batch.draw(getFrontLeftSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
 
@@ -176,7 +159,7 @@ public class Hero {
 
 			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 150) {
 				batch.draw(getFrontRightSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
->>>>>>> 010460fdf1d1b51a67f4a3c2fe16ee234ec485c9
+
 
 			}
 			if (getOldYPositionForMovement() - getyPositionForMovement() >= 180) {
@@ -191,19 +174,10 @@ public class Hero {
 
 	private void updateMapBoxPositionForMovement(int checkForDirection) {
 		switch (checkForDirection) {
-<<<<<<< HEAD
+
 		case 1:
 			if (xPositionForMovement < oldXPositionForCollision-23 ) {
-=======
-		case -1:
-			if (xPositionForMovement >= oldXPositionForCollision + 46) {
-				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() + 1);
-				oldXPositionForCollision=xPositionForMovement;
-			}
-			break;
-		case 1:
-			if (xPositionForMovement <= oldXPositionForCollision - 46) {
->>>>>>> 010460fdf1d1b51a67f4a3c2fe16ee234ec485c9
+
 				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() - 1);
 				oldXPositionForCollision=oldXPositionForCollision-46;
 				//centralizedThePositionForCollision
@@ -291,7 +265,18 @@ public class Hero {
 		return 0;
 
 	}
-
+	public float getOldXPositionForCollision() {
+		return oldXPositionForCollision;
+	}
+	public void setOldXPositionForCollision(float oldXPositionForCollision) {
+		this.oldXPositionForCollision = oldXPositionForCollision;
+	}
+	public float getOldYPositionForCollision() {
+		return oldYPositionForCollision;
+	}
+	public void setOldYPositionForCollision(float oldYPositionForCollision) {
+		this.oldYPositionForCollision = oldYPositionForCollision;
+	}
 	private void moveLeft() {
 		this.xPositionForMovement -= 3;
 	}

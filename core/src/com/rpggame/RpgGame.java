@@ -10,7 +10,6 @@ import interaction.*;
 import mapAttr.BackgroundArrayInitializer;
 import mapAttr.CreateTheWholeMap;
 import models.Hero;
-import sizes.SizesOfObjectsOnTheMap;
 import textures.TextureInitializer;
 
 public class RpgGame extends ApplicationAdapter {
@@ -29,8 +28,7 @@ public class RpgGame extends ApplicationAdapter {
 	public CreateTheWholeMap createTheWholeMap;
 	public TextureInitializer textureIniter;
 	public InteracterPlayerMap interacterPlayerMap;
-	public SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap;
-
+	
 	public void setWholeMap() {
 		this.wholeMap = createTheWholeMap.getMap();
 	}
@@ -44,7 +42,7 @@ public class RpgGame extends ApplicationAdapter {
 		backgrArray = new BackgroundArrayInitializer();
 		backgrArray.initializingSmallMap();
 		textureIniter = TextureInitializer.getInstance();
-		sizesOfObjectsOnTheMap = new SizesOfObjectsOnTheMap();
+		
 		createTheWholeMap = new CreateTheWholeMap();
 		createTheWholeMap.initializingBigMap();
 
