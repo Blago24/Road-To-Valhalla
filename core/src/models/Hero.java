@@ -17,11 +17,10 @@ public class Hero {
 	int heroMapColPositionForMovement;
 
 	Texture front;
-	Texture frontLeftStep;
-	Texture frontRightStep;
-	
-	
-
+	Texture frontLeftSmallStep;
+	Texture frontLeftBigStep;
+	Texture frontRightSmallStep;
+	Texture frontRightBigStep;
 	Texture left;
 	Texture leftLeftStep;
 	Texture leftRightStep;
@@ -35,40 +34,41 @@ public class Hero {
 
 	public Hero() {
 	}
+<<<<<<< HEAD
 	public void centralizedThePositionForCollision(float xPositionForMovement, float yPositionForMovement){
 		setOldXPositionForCollision(xPositionForMovement);
 		setOldYPositionForCollision(yPositionForMovement);
 	
 	}
 
+=======
+>>>>>>> 010460fdf1d1b51a67f4a3c2fe16ee234ec485c9
 
-	public float getOldXPositionForCollision() {
-		return oldXPositionForCollision;
-	}
-	public void setOldXPositionForCollision(float oldXPositionForCollision) {
-		this.oldXPositionForCollision = oldXPositionForCollision;
-	}
-	public float getOldYPositionForCollision() {
-		return oldYPositionForCollision;
-	}
-	public void setOldYPositionForCollision(float oldYPositionForCollision) {
-		this.oldYPositionForCollision = oldYPositionForCollision;
-	}
 	public Hero(float xPositionForMovement, float yPositionForMovement, int heroMapRowPositionForMovement,
 			int heroMapColPositionForMovement) {
 
+<<<<<<< HEAD
 
 		this.xPositionForMovement = xPositionForMovement+23;
 		this.yPositionForMovement = yPositionForMovement+23;
 		centralizedThePositionForCollision(this.xPositionForMovement,this. yPositionForMovement);
+=======
+		this.xPositionForMovement = xPositionForMovement;
+		this.yPositionForMovement = yPositionForMovement;
+		this.oldXPositionForMovement = xPositionForMovement;
+		this.oldYPositionForMovement = yPositionForMovement;
+		this.oldXPositionForCollision = xPositionForMovement;
+		this.oldYPositionForCollision = yPositionForMovement;
+>>>>>>> 010460fdf1d1b51a67f4a3c2fe16ee234ec485c9
 		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement;
 		this.heroMapColPositionForMovement = heroMapColPositionForMovement;
 
 		this.front = new Texture("heroImages//Front.png");
 
-		this.frontLeftStep = new Texture("heroImages//Front-LeftStep.png");
-		
-		this.frontRightStep = new Texture("heroImages//Front-RightStep.png");
+		this.frontLeftSmallStep = new Texture("heroImages//frontLeftSmallStep.png");
+		this.frontLeftBigStep = new Texture("heroImages//frontLeftBigStep.png");
+		this.frontRightSmallStep = new Texture("heroImages//frontRightSmallStep.png");
+		this.frontRightBigStep = new Texture("heroImages//frontRightBigStep.png");
 
 		this.left = new Texture("heroImages//Left.png");
 		this.leftLeftStep = new Texture("heroImages//Left-LeftStep.png");
@@ -148,27 +148,62 @@ public class Hero {
 			return true;
 		} else if (checkForDirection() == -2) {
 
+<<<<<<< HEAD
 			if (getOldYPositionForMovement() - getyPositionForMovement() < 50) {
 				batch.draw(getFrontLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
 
 			} else if (getOldYPositionForMovement() - getyPositionForMovement() > 50) {
 				batch.draw(getFrontRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+=======
+			if (getOldYPositionForMovement() - getyPositionForMovement() < 30) {
+				batch.draw(getFrontLeftSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
+
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 30
+					&& getOldYPositionForMovement() - getyPositionForMovement() < 60) {
+				batch.draw(getFrontLeftBigStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
+
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 60
+					&& getOldYPositionForMovement() - getyPositionForMovement() < 90) {
+				batch.draw(getFrontLeftSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
+
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 90
+					&& getOldYPositionForMovement() - getyPositionForMovement() < 120) {
+				batch.draw(getFrontRightSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
+
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 120
+					&& getOldYPositionForMovement() - getyPositionForMovement() < 150) {
+				batch.draw(getFrontRightBigStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
+
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 150) {
+				batch.draw(getFrontRightSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
+>>>>>>> 010460fdf1d1b51a67f4a3c2fe16ee234ec485c9
 
 			}
-			if (getOldYPositionForMovement() - getyPositionForMovement() >= 100) {
+			if (getOldYPositionForMovement() - getyPositionForMovement() >= 180) {
 				oldYPositionForMovement = yPositionForMovement;
 			}
+
 			moveBot();
 			return true;
-		
 		}
 		return false;
 	}
 
 	private void updateMapBoxPositionForMovement(int checkForDirection) {
 		switch (checkForDirection) {
+<<<<<<< HEAD
 		case 1:
 			if (xPositionForMovement < oldXPositionForCollision-23 ) {
+=======
+		case -1:
+			if (xPositionForMovement >= oldXPositionForCollision + 46) {
+				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() + 1);
+				oldXPositionForCollision=xPositionForMovement;
+			}
+			break;
+		case 1:
+			if (xPositionForMovement <= oldXPositionForCollision - 46) {
+>>>>>>> 010460fdf1d1b51a67f4a3c2fe16ee234ec485c9
 				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() - 1);
 				oldXPositionForCollision=oldXPositionForCollision-46;
 				//centralizedThePositionForCollision
@@ -199,7 +234,21 @@ public class Hero {
 
 	}
 
+	public Texture getFrontLeftSmallStep() {
+		return frontLeftSmallStep;
+	}
 
+	public Texture getFrontLeftBigStep() {
+		return frontLeftBigStep;
+	}
+
+	public Texture getFrontRightSmallStep() {
+		return frontRightSmallStep;
+	}
+
+	public Texture getFrontRightBigStep() {
+		return frontRightBigStep;
+	}
 
 	public float getOldXPositionForMovement() {
 		return oldXPositionForMovement;
@@ -330,18 +379,7 @@ public class Hero {
 	public void setLeftRightStep(Texture leftRightStep) {
 		this.leftRightStep = leftRightStep;
 	}
-	public Texture getFrontRightStep() {
-		return frontRightStep;
-	}
-	public void setFrontRightStep(Texture frontRightStep) {
-		this.frontRightStep = frontRightStep;
-	}
-	public Texture getFrontLeftStep() {
-		return frontLeftStep;
-	}
-	public void setFrontLeftStep(Texture frontLeftStep) {
-		this.frontLeftStep = frontLeftStep;
-	}
+
 	public Texture getRight() {
 		return right;
 	}
