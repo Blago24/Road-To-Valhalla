@@ -7,8 +7,8 @@ gwt {
     minHeapSize="1G"
 
     src = files(file("src/")) // Needs to be in front of "modules" below.
-    modules 'com.roadtovalhalla.game.GdxDefinition'
-    devModules 'com.roadtovalhalla.game.GdxDefinitionSuperdev'
+    modules 'com.rpggame.GdxDefinition'
+    devModules 'com.rpggame.GdxDefinitionSuperdev'
     project.webAppDirName = 'webapp'
 
     compiler {
