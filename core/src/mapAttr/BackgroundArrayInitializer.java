@@ -1,5 +1,6 @@
 package mapAttr;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import mapPieces.BackgroundPiece;
@@ -86,14 +87,20 @@ public class BackgroundArrayInitializer {
 
 	public void resetTheSmallMap() {
 		this.smallMap = null;
-		this.smallMap = new Object[15][15];
+		this.smallMap = new Object[13][15];
 	}
 
 	public Object[][] createNextSmallMapBeforeWholeIsLoaded(int rowIndexBigMap, int colIndexBigMap) {
 		resetTheSmallMap();
+<<<<<<< HEAD:core/src/mapAttr/BackgroundArrayInitializer.java
 		float xPosition=0;
 		float yPosition=0;
 		for (int row = 0; row < 15; row++) {
+=======
+		float xPosition = 0;
+		float yPosition = Gdx.graphics.getHeight();
+		for (int row = 0; row < 13; row++) {
+>>>>>>> epa te:core/src/map/SmallMap.java
 			for (int col = 0; col < 15; col++) {
 
 				int type = getPiece(rowIndexBigMap, colIndexBigMap, row, col);
@@ -105,7 +112,7 @@ public class BackgroundArrayInitializer {
 				xPosition += 46;
 			}
 			xPosition = 0;
-			yPosition += 46;
+			yPosition -= 46;
 		}
 		
 		return this.smallMap;
@@ -122,7 +129,7 @@ public class BackgroundArrayInitializer {
 	public void showLowestLevel(Object[][] array, SpriteBatch batch, LoadTexturesForMap loadTexturesForMap,
 			SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap) {
 
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 13; i++) {
 			for (int j = 0; j < 15; j++) {
 				int type = ((BackgroundPiece) array[i][j]).getType();
 				
@@ -136,7 +143,7 @@ public class BackgroundArrayInitializer {
 	public void showHighestLevel(Object[][] array, SpriteBatch batch, LoadTexturesForMap loadTexturesForMap,
 			SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap) {
 
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 13; i++) {
 			for (int j = 0; j < 15; j++) {
 				int type = ((BackgroundPiece) array[i][j]).getType();
 				
@@ -283,6 +290,7 @@ public class BackgroundArrayInitializer {
 		return smallMapThreeThree;
 	}
 
+<<<<<<< HEAD:core/src/mapAttr/BackgroundArrayInitializer.java
 	private int smallMapZeroZero[][] = { { 7, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
@@ -291,6 +299,23 @@ public class BackgroundArrayInitializer {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
+=======
+	private int smallMapZeroZero[][] = { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 1 },
+			{ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 },
+			{ 1, 1, 1, 1, 1, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 7, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1 } };
+>>>>>>> epa te:core/src/map/SmallMap.java
 	private int smallMapZeroOne[][] = { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },

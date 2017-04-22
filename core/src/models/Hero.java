@@ -45,10 +45,17 @@ public class Hero {
 	public Hero(float xPositionForMovement, float yPositionForMovement, int heroMapRowPositionForMovement,
 			int heroMapColPositionForMovement) {
 
+<<<<<<< HEAD
 		this.xPositionForMovement = xPositionForMovement+23;
 		this.yPositionForMovement = yPositionForMovement+23;
 		centralizedThePositionForCollision(this.xPositionForMovement,this. yPositionForMovement);
 
+=======
+
+		this.xPositionForMovement = xPositionForMovement+23;
+		this.yPositionForMovement = yPositionForMovement+23;
+		centralizedThePositionForCollision(this.xPositionForMovement,this. yPositionForMovement);
+>>>>>>> epa te
 		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement;
 		this.heroMapColPositionForMovement = heroMapColPositionForMovement;
 
@@ -137,6 +144,7 @@ public class Hero {
 			return true;
 		} else if (checkForDirection() == -2) {
 
+<<<<<<< HEAD
 
 			if (getOldYPositionForMovement() - getyPositionForMovement() < 30) {
 				batch.draw(getFrontLeftSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
@@ -160,6 +168,13 @@ public class Hero {
 			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 150) {
 				batch.draw(getFrontRightSmallStep(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
 
+=======
+			if (getOldYPositionForMovement() - getyPositionForMovement() < 50) {
+				batch.draw(getFrontLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() > 50) {
+				batch.draw(getFrontRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+>>>>>>> epa te
 
 			}
 			if (getOldYPositionForMovement() - getyPositionForMovement() >= 180) {
@@ -174,10 +189,15 @@ public class Hero {
 
 	private void updateMapBoxPositionForMovement(int checkForDirection) {
 		switch (checkForDirection) {
+<<<<<<< HEAD
 
 		case 1:
 			if (xPositionForMovement < oldXPositionForCollision-23 ) {
 
+=======
+		case 1:
+			if (xPositionForMovement < oldXPositionForCollision-23 ) {
+>>>>>>> epa te
 				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() - 1);
 				oldXPositionForCollision=oldXPositionForCollision-46;
 				//centralizedThePositionForCollision
