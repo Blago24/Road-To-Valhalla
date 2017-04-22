@@ -24,6 +24,7 @@ public class RoadToValhalla extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+		smallMap= new SmallMap();
 		smallMap.initializingSmallMap();
 		wholeMap = new WholeMap();
 		wholeMap.initializingBigMap();
