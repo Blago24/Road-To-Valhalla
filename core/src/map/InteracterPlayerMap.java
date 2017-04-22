@@ -29,6 +29,7 @@ public class InteracterPlayerMap {
 				hero.setxPositionForMovement(Gdx.graphics.getWidth() - 23);
 				hero.setOldXPositionForMovement(Gdx.graphics.getWidth() - 23);
 				hero.setHeroMapColPositionForMovement(14);
+				hero.centralizedThePositionForCollision( Gdx.graphics.getWidth() - 23,hero.getHeroMapRowPositionForMovement()*46);
 				return true;
 			}
 		}
@@ -43,6 +44,7 @@ public class InteracterPlayerMap {
 				hero.setOldXPositionForMovement(23);
 				hero.setOldXPositionForCollision(23);
 				hero.setHeroMapColPositionForMovement(0);
+				hero.centralizedThePositionForCollision( 23,hero.getHeroMapRowPositionForMovement()*46);
 				return true;
 			}
 		}
@@ -56,6 +58,7 @@ public class InteracterPlayerMap {
 				hero.setyPositionForMovement(23 + 138);
 				hero.setOldYPositionForMovement(23 + 138);
 				hero.setHeroMapRowPositionForMovement(12);
+				hero.centralizedThePositionForCollision(hero.getHeroMapColPositionForMovement()*46, 23 + 138);
 				return true;
 			}
 		}
@@ -70,6 +73,7 @@ public class InteracterPlayerMap {
 				hero.setyPositionForMovement(Gdx.graphics.getHeight() - 23);
 				hero.setOldYPositionForMovement(Gdx.graphics.getHeight() - 23);
 				hero.setHeroMapRowPositionForMovement(0);
+				hero.centralizedThePositionForCollision(hero.getHeroMapColPositionForMovement()*46, Gdx.graphics.getHeight() - 23);
 				return true;
 			}
 		}

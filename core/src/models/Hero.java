@@ -99,11 +99,11 @@ public class Hero {
 			showHero(batch);
 
 		}
-
+		updateMapBoxPositionForMovement(checkForDirection());
 	}
 
 	public boolean moveHero(SpriteBatch batch) {
-		updateMapBoxPositionForMovement(checkForDirection());
+		
 		if (checkForDirection() == -1) {
 			if (getOldXPositionForMovement() - getxPositionForMovement() < 30) {
 				batch.draw(getLeftLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
