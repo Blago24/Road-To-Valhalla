@@ -16,85 +16,82 @@ public class Hero {
 	int heroMapRowPositionForMovement;
 	int heroMapColPositionForMovement;
 
-	Texture front;
-	Texture frontLeftStep;
-	Texture frontRightStep;
-	
-	
-
-	Texture left;
-	Texture leftLeftStep;
-	Texture leftRightStep;
-	Texture right;
-	Texture rightLeftStep;
-	Texture rightRightStep;
-	Texture back;
-	Texture backLeftStep;
-	Texture backRightStep;
-	Texture lastTurn;
+	private Texture front;
+	private Texture frontLeftStep;
+	private Texture frontRightStep;
+	private Texture left;
+	private Texture leftLeftStep;
+	private Texture leftRightStep;
+	private Texture right;
+	private Texture rightLeftStep;
+	private Texture rightRightStep;
+	private Texture back;
+	private Texture backLeftStep;
+	private Texture backRightStep;
+	private Texture lastTurn;
+	private Texture backRightBigStep;
+	private Texture backLeftBigStep;
+	private Texture rightRightBigStep;
+	private Texture rightLeftBigStep;
+	private Texture leftRightBigStep;
+	private Texture leftLeftBigStep;
+	private Texture frontRightBigStep;
+	private Texture frontLeftBigStep;
 
 	public Hero() {
 	}
-	public void centralizedThePositionForCollision(float xPositionForMovement, float yPositionForMovement){
-		setOldXPositionForCollision(xPositionForMovement);
-		setOldYPositionForCollision(yPositionForMovement);
-	
-	}
 
-
-	public float getOldXPositionForCollision() {
-		return oldXPositionForCollision;
-	}
-	public void setOldXPositionForCollision(float oldXPositionForCollision) {
-		this.oldXPositionForCollision = oldXPositionForCollision;
-	}
-	public float getOldYPositionForCollision() {
-		return oldYPositionForCollision;
-	}
-	public void setOldYPositionForCollision(float oldYPositionForCollision) {
-		this.oldYPositionForCollision = oldYPositionForCollision;
-	}
 	public Hero(float xPositionForMovement, float yPositionForMovement, int heroMapRowPositionForMovement,
 			int heroMapColPositionForMovement) {
 
-
-		this.xPositionForMovement = xPositionForMovement+23;
-		this.yPositionForMovement = yPositionForMovement+23;
-		centralizedThePositionForCollision(this.xPositionForMovement,this. yPositionForMovement);
+		this.xPositionForMovement = xPositionForMovement + 23;
+		this.yPositionForMovement = yPositionForMovement + 23;
+		this.oldXPositionForMovement = this.xPositionForMovement;
+		this.oldYPositionForMovement = this.yPositionForMovement;
+		centralizedThePositionForCollision(this.xPositionForMovement, this.yPositionForMovement);
 		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement;
 		this.heroMapColPositionForMovement = heroMapColPositionForMovement;
 
 		this.front = new Texture("heroImages//Front.png");
-
-		this.frontLeftStep = new Texture("heroImages//Front-LeftStep.png");
-		
-		this.frontRightStep = new Texture("heroImages//Front-RightStep.png");
+		this.frontLeftBigStep = new Texture("heroImages//FrontLeftBigStep.png");
+		this.frontLeftStep = new Texture("heroImages//FrontLeftStep.png");
+		this.frontRightBigStep = new Texture("heroImages//FrontRightBigStep.png");
+		this.frontRightStep = new Texture("heroImages//FrontRightStep.png");
 
 		this.left = new Texture("heroImages//Left.png");
-		this.leftLeftStep = new Texture("heroImages//Left-LeftStep.png");
-		this.leftRightStep = new Texture("heroImages//Left-RightStep.png");
+		this.leftLeftBigStep = new Texture("heroImages//LeftBigLeftStep.png");
+		this.leftLeftStep = new Texture("heroImages//LeftLeftStep.png");
+		this.leftRightBigStep = new Texture("heroImages//LeftBigRightStep.png");
+		this.leftRightStep = new Texture("heroImages//LeftRightStep.png");
+
 		this.right = new Texture("heroImages//Right.png");
-		this.rightLeftStep = new Texture("heroImages//Right-LeftStep.png");
-		this.rightRightStep = new Texture("heroImages//Right-RightStep.png");
+		this.rightLeftBigStep = new Texture("heroImages//RightBigLeftStep.png");
+		this.rightLeftStep = new Texture("heroImages//RightLeftStep.png");
+		this.rightRightBigStep = new Texture("heroImages//RightBigRightStep.png");
+		this.rightRightStep = new Texture("heroImages//RightRightStep.png");
+
 		this.back = new Texture("heroImages//Back.png");
-		this.backLeftStep = new Texture("heroImages//Back-LeftStep.png");
-		this.backRightStep = new Texture("heroImages//Back-RightStep.png");
+		this.backLeftBigStep = new Texture("heroImages//BackLeftBigStep.png");
+		this.backLeftStep = new Texture("heroImages//BackLeftStep.png");
+		this.backRightBigStep = new Texture("heroImages//BackRightBigStep.png");
+		this.backRightStep = new Texture("heroImages//BackRightStep.png");
+
 		this.lastTurn = this.front;
 	}
 
 	public void showHero(SpriteBatch batch) {
-
-		batch.draw(getLastTurn(), getxPositionForMovement()-23, getyPositionForMovement()-23, 56, 70);
+		this.oldXPositionForMovement = this.getxPositionForMovement();
+		this.oldYPositionForMovement = this.getyPositionForMovement();
+		batch.draw(getLastTurn(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 56, 70);
 
 	}
-	
+
 	public void update(float delta, SpriteBatch batch) {
-		// System.out.println("Y-" + yPositionForMovement);
-		// System.out.println("X-" + xPositionForMovement);
-		// System.out.println("OY-" + oldYPositionForMovement);
-		// System.out.println("OX-" + oldXPositionForMovement);
-		System.out.println("x="+getxPositionForMovement());
-		System.out.println("y="+getyPositionForMovement());
+
+		System.out.println("x=" + getxPositionForMovement());
+		System.out.println("y=" + getyPositionForMovement());
+		System.out.println("OX" + getOldXPositionForMovement());
+		System.out.println("OY" + getOldYPositionForMovement());
 		System.out.println("row=" + getHeroMapRowPositionForMovement());
 		System.out.println("col=" + getHeroMapColPositionForMovement());
 
@@ -107,89 +104,161 @@ public class Hero {
 
 	public boolean moveHero(SpriteBatch batch) {
 		updateMapBoxPositionForMovement(checkForDirection());
-		if (checkForDirection() == 1) {
-			if (getOldXPositionForMovement() - getxPositionForMovement() < 50) {
-				batch.draw(getLeftLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+		if (checkForDirection() == -1) {
+			if (getOldXPositionForMovement() - getxPositionForMovement() < 30) {
+				batch.draw(getLeftLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
 
-			} else if (getOldXPositionForMovement() - getxPositionForMovement() > 50) {
-				batch.draw(getLeftRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23,50,70);
+			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 30
+					&& getOldXPositionForMovement() - getxPositionForMovement() < 60) {
+				batch.draw(getLeftLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
+						70);
 
-			}
-			if (getOldXPositionForMovement() - getxPositionForMovement() >= 100) {
+			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 60
+					&& getOldXPositionForMovement() - getxPositionForMovement() < 90) {
+				batch.draw(getLeftLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 90
+					&& getOldXPositionForMovement() - getxPositionForMovement() < 120) {
+				batch.draw(getLeftRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 120
+					&& getOldXPositionForMovement() - getxPositionForMovement() < 150) {
+				batch.draw(getLeftRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
+						70);
+
+			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 150
+					&& getOldXPositionForMovement() - getxPositionForMovement() < 180) {
+				batch.draw(getLeftRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else {
 				oldXPositionForMovement = xPositionForMovement;
 			}
 			moveLeft();
 			return true;
-		} else if (checkForDirection() == -1) {
-			if (getxPositionForMovement() - getOldXPositionForMovement() > 50) {
-				batch.draw(getRightLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+		} else if (checkForDirection() == 1) {
 
-			} else if (getxPositionForMovement() - getOldXPositionForMovement() < 50) {
-				batch.draw(getRightRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+			if (getxPositionForMovement() - getOldXPositionForMovement() < 30) {
+				batch.draw(getRightLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
 
-			}
-			if (getxPositionForMovement() - getOldXPositionForMovement() >= 100) {
-				oldXPositionForMovement = xPositionForMovement;
+			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 30
+					&& getxPositionForMovement() - getOldXPositionForMovement() < 60) {
+				batch.draw(getRightLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
+						70);
+
+			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 60
+					&& getxPositionForMovement() - getOldXPositionForMovement() < 90) {
+				batch.draw(getRightLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 90
+					&& getxPositionForMovement() - getOldXPositionForMovement() < 120) {
+				batch.draw(getRightRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 120
+					&& getxPositionForMovement() - getOldXPositionForMovement() < 150) {
+				batch.draw(getRightRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
+						70);
+
+			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 150
+					&& getxPositionForMovement() - getOldXPositionForMovement() < 180) {
+				batch.draw(getRightRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else {
+				this.oldXPositionForMovement = this.xPositionForMovement;
 			}
 			moveRight();
 			return true;
 		} else if (checkForDirection() == 2) {
-			if (getyPositionForMovement() - getOldYPositionForMovement() > 50) {
-				batch.draw(getBackLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+			if (getyPositionForMovement() - getOldYPositionForMovement() < 30) {
+				batch.draw(getBackLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
 
-			} else if (getyPositionForMovement() - getOldYPositionForMovement() < 50) {
-				batch.draw(getBackRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 30
+					&& getyPositionForMovement() - getOldYPositionForMovement() < 60) {
+				batch.draw(getBackLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
+						70);
 
-			}
-			if (getyPositionForMovement() - getOldYPositionForMovement() >= 100) {
-				oldYPositionForMovement = yPositionForMovement;
+			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 60
+					&& getyPositionForMovement() - getOldYPositionForMovement() < 90) {
+				batch.draw(getBackLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 90
+					&& getyPositionForMovement() - getOldYPositionForMovement() < 120) {
+				batch.draw(getBackRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 120
+					&& getyPositionForMovement() - getOldYPositionForMovement() < 150) {
+				batch.draw(getBackRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
+						70);
+
+			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 150
+					&& getyPositionForMovement() - getOldYPositionForMovement() < 180) {
+				batch.draw(getBackRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else {
+				this.oldYPositionForMovement = this.yPositionForMovement;
 			}
 			moveTop();
 			return true;
 		} else if (checkForDirection() == -2) {
+			if (getOldYPositionForMovement() - getyPositionForMovement() < 30) {
+				batch.draw(getFrontLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
 
-			if (getOldYPositionForMovement() - getyPositionForMovement() < 50) {
-				batch.draw(getFrontLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 30
+					&& getOldYPositionForMovement() - getyPositionForMovement() < 60) {
+				batch.draw(getFrontLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
+						70);
 
-			} else if (getOldYPositionForMovement() - getyPositionForMovement() > 50) {
-				batch.draw(getFrontRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 60
+					&& getOldYPositionForMovement() - getyPositionForMovement() < 90) {
+				batch.draw(getFrontLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
 
-			}
-			if (getOldYPositionForMovement() - getyPositionForMovement() >= 100) {
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 90
+					&& getOldYPositionForMovement() - getyPositionForMovement() < 120) {
+				batch.draw(getFrontRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 120
+					&& getOldYPositionForMovement() - getyPositionForMovement() < 150) {
+				batch.draw(getFrontRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
+						70);
+
+			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 150
+					&& getOldYPositionForMovement() - getyPositionForMovement() < 180) {
+				batch.draw(getFrontRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+
+			} else {
 				oldYPositionForMovement = yPositionForMovement;
 			}
 			moveBot();
 			return true;
-		
+
 		}
 		return false;
 	}
 
 	private void updateMapBoxPositionForMovement(int checkForDirection) {
 		switch (checkForDirection) {
-		case 1:
-			if (xPositionForMovement < oldXPositionForCollision-23 ) {
+		case -1:
+			if (xPositionForMovement < oldXPositionForCollision - 23) {
 				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() - 1);
-				oldXPositionForCollision=oldXPositionForCollision-46;
-				//centralizedThePositionForCollision
+				oldXPositionForCollision = oldXPositionForCollision - 46;
+
 			}
 			break;
-		case -1:
-			if (xPositionForMovement > oldXPositionForCollision+23 ) {
+		case 1:
+			if (xPositionForMovement > oldXPositionForCollision + 23) {
 				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() + 1);
-				oldXPositionForCollision=oldXPositionForCollision+46;
+				oldXPositionForCollision = oldXPositionForCollision + 46;
 			}
 			break;
 		case 2:
 			if (yPositionForMovement > oldYPositionForCollision + 23) {
-				setHeroMapRowPositionForMovement(getHeroMapRowPositionForMovement() + 1);
-				oldYPositionForCollision=oldYPositionForCollision+46;
+				setHeroMapRowPositionForMovement(getHeroMapRowPositionForMovement() - 1);
+				oldYPositionForCollision = oldYPositionForCollision + 46;
 			}
 			break;
 		case -2:
 			if (yPositionForMovement < oldYPositionForCollision - 23) {
-				setHeroMapRowPositionForMovement(getHeroMapRowPositionForMovement() - 1);
-				oldYPositionForCollision=oldYPositionForCollision-46;
+				setHeroMapRowPositionForMovement(getHeroMapRowPositionForMovement() + 1);
+				oldYPositionForCollision = oldYPositionForCollision - 46;
 			}
 			break;
 		default:
@@ -198,8 +267,6 @@ public class Hero {
 		}
 
 	}
-
-
 
 	public float getOldXPositionForMovement() {
 		return oldXPositionForMovement;
@@ -221,12 +288,12 @@ public class Hero {
 		if (Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT)
 				|| Gdx.input.isKeyPressed(Keys.DPAD_RIGHT)) {
 			setLastTurn(right);
-			return -1;
+			return 1;
 		}
 		if (Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT)
 				|| Gdx.input.isKeyPressed(Keys.DPAD_LEFT)) {
 			setLastTurn(left);
-			return 1;
+			return -1;
 		}
 		if (Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.DPAD_UP)) {
 			setLastTurn(back);
@@ -330,18 +397,23 @@ public class Hero {
 	public void setLeftRightStep(Texture leftRightStep) {
 		this.leftRightStep = leftRightStep;
 	}
+
 	public Texture getFrontRightStep() {
 		return frontRightStep;
 	}
+
 	public void setFrontRightStep(Texture frontRightStep) {
 		this.frontRightStep = frontRightStep;
 	}
+
 	public Texture getFrontLeftStep() {
 		return frontLeftStep;
 	}
+
 	public void setFrontLeftStep(Texture frontLeftStep) {
 		this.frontLeftStep = frontLeftStep;
 	}
+
 	public Texture getRight() {
 		return right;
 	}
@@ -389,6 +461,60 @@ public class Hero {
 
 	public void setLastTurn(Texture lastTurn) {
 		this.lastTurn = lastTurn;
+	}
+
+	public Texture getBackRightBigStep() {
+		return backRightBigStep;
+	}
+
+	public Texture getBackLeftBigStep() {
+		return backLeftBigStep;
+	}
+
+	public Texture getRightRightBigStep() {
+		return rightRightBigStep;
+	}
+
+	public Texture getRightLeftBigStep() {
+		return rightLeftBigStep;
+	}
+
+	public Texture getLeftRightBigStep() {
+		return leftRightBigStep;
+	}
+
+	public Texture getLeftLeftBigStep() {
+		return leftLeftBigStep;
+	}
+
+	public Texture getFrontRightBigStep() {
+		return frontRightBigStep;
+	}
+
+	public Texture getFrontLeftBigStep() {
+		return frontLeftBigStep;
+	}
+
+	public void centralizedThePositionForCollision(float xPositionForMovement, float yPositionForMovement) {
+		setOldXPositionForCollision(xPositionForMovement);
+		setOldYPositionForCollision(yPositionForMovement);
+
+	}
+
+	public float getOldXPositionForCollision() {
+		return oldXPositionForCollision;
+	}
+
+	public void setOldXPositionForCollision(float oldXPositionForCollision) {
+		this.oldXPositionForCollision = oldXPositionForCollision;
+	}
+
+	public float getOldYPositionForCollision() {
+		return oldYPositionForCollision;
+	}
+
+	public void setOldYPositionForCollision(float oldYPositionForCollision) {
+		this.oldYPositionForCollision = oldYPositionForCollision;
 	}
 
 }

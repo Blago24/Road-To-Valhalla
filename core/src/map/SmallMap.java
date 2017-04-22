@@ -70,11 +70,11 @@ public class SmallMap {
 
 	public float getMiddleXPosition() {
 
-		return ((OnePiece) this.smallMap[getMiddleRowIndex()][getMiddleColIndex()]).getxPosition();
+		return ((OnePiece) this.smallMap[getMiddleColIndex()][getMiddleRowIndex()]).getxPosition();
 	}
 
 	public float getMiddleYPosition() {
-		return ((OnePiece) this.smallMap[getMiddleRowIndex()][getMiddleColIndex()]).getyPosition();
+		return ((OnePiece) this.smallMap[getMiddleColIndex()][getMiddleRowIndex()]).getyPosition();
 	}
 
 public SmallMap() {

@@ -15,18 +15,20 @@ public class InteracterPlayerMap {
 	}
 
 	public boolean checkForCurrentMap(Hero hero, float xPosition, float yPosition) {
-//		System.out.println("x" + xPosition);
-//		System.out.println("y" + yPosition);
+		System.out.println("x----" + xPosition);
+		 System.out.println("y----" + yPosition);
 		if (xPosition < 23 && colIndexForCurrentMap == 0) {
 			hero.setxPositionForMovement(23);
 			hero.setOldXPositionForMovement(23);
 			hero.setOldXPositionForCollision(23);
+
 			return false;
 		} else {
 			if (xPosition < 23 && colIndexForCurrentMap > 0) {
 				setColIndexForCurrentMap(getColIndexForCurrentMap() - 1);
-				hero.setxPositionForMovement(Gdx.graphics.getWidth() - 46);
-				hero.setOldXPositionForMovement(Gdx.graphics.getWidth() - 46);
+				hero.setxPositionForMovement(Gdx.graphics.getWidth() - 23);
+				hero.setOldXPositionForMovement(Gdx.graphics.getWidth() - 23);
+				hero.setHeroMapColPositionForMovement(14);
 				return true;
 			}
 		}
@@ -40,6 +42,7 @@ public class InteracterPlayerMap {
 				hero.setxPositionForMovement(23);
 				hero.setOldXPositionForMovement(23);
 				hero.setOldXPositionForCollision(23);
+				hero.setHeroMapColPositionForMovement(0);
 				return true;
 			}
 		}
@@ -50,9 +53,9 @@ public class InteracterPlayerMap {
 		} else {
 			if (yPosition > Gdx.graphics.getHeight() - 23 && rowIndexForCurrentMap > 0) {
 				setRowIndexForCurrentMap(getRowIndexForCurrentMap() - 1);
-				hero.setyPositionForMovement(23+138);
-				hero.setOldYPositionForMovement(23+138);
-				
+				hero.setyPositionForMovement(23 + 138);
+				hero.setOldYPositionForMovement(23 + 138);
+				hero.setHeroMapRowPositionForMovement(12);
 				return true;
 			}
 		}
@@ -66,6 +69,7 @@ public class InteracterPlayerMap {
 				setRowIndexForCurrentMap(getRowIndexForCurrentMap() + 1);
 				hero.setyPositionForMovement(Gdx.graphics.getHeight() - 23);
 				hero.setOldYPositionForMovement(Gdx.graphics.getHeight() - 23);
+				hero.setHeroMapRowPositionForMovement(0);
 				return true;
 			}
 		}
