@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import map.InteracterPlayerMap;
 import map.SmallMap;
 import map.WholeMap;
+import models.Hero;
 
 public class RoadToValhalla extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -20,6 +22,10 @@ public class RoadToValhalla extends ApplicationAdapter {
 	public Object[][] map;
 	public WholeMap wholeMap;
 	public SmallMap smallMap;
+	public Hero hero;
+
+	public InteracterPlayerMap interacterPlayerMap;
+	
 	
 	@Override
 	public void create () {
@@ -28,6 +34,10 @@ public class RoadToValhalla extends ApplicationAdapter {
 		smallMap.initializingSmallMap();
 		wholeMap = new WholeMap();
 		wholeMap.initializingBigMap();
+		interacterPlayerMap = new InteracterPlayerMap(0, 0);
+		
+		hero = new Hero(smallMap.getMiddleYPosition(), smallMap.getMiddleXPosition(),
+				smallMap.getMiddleRowIndex(), smallMap.getMiddleColIndex());
 	}
 
 	@Override
@@ -38,6 +48,19 @@ public class RoadToValhalla extends ApplicationAdapter {
 	}
 	private void update(SpriteBatch batch) {
 		batch.begin();
+
+		interacterPlayerMap.checkForCurrentMap(hero, hero.getxPositionForMovement(), hero.getyPositionForMovement());
+
+		smallMap.showLowestLevel(
+				wholeMap.getOneBoxMap(interacterPlayerMap.getRowIndexForCurrentMap(),
+						interacterPlayerMap.getColIndexForCurrentMap()),
+				batch, loadTexturesForMap, sizesOfObjectsOnTheMap);
+
+		hero.update(Gdx.graphics.getDeltaTime(), batch);
+		smallMap.showHighestLevel(
+				wholeMap.getOneBoxMap(interacterPlayerMap.getRowIndexForCurrentMap(),
+						interacterPlayerMap.getColIndexForCurrentMap()),
+				batch, loadTexturesForMap, sizesOfObjectsOnTheMap);
 
 		batch.end();
 	}

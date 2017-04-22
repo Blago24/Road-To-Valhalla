@@ -9,8 +9,6 @@ public class SmallMap {
 	public int middleColIndex;
 	public float middleRowXPosition;
 	public float middleColYPosition;
-		
-	
 
 	public int getStartColIndexForSmallMap() {
 		return startColIndexForSmallMap;
@@ -49,56 +47,115 @@ public class SmallMap {
 
 	public void initializingSmallMap() {
 		this.smallMap = new Object[15][15];
-		this.middleColIndex=this.smallMap[0].length/2;
-		this.middleRowIndex=this.smallMap.length/2;
-		
-		
+		this.middleColIndex = this.smallMap[0].length / 2;
+		this.middleRowIndex = this.smallMap.length / 2;
+
 	}
-	public Object[][] createNextSmallMap(int rowIndexBigMap, int colIndexBigMap) {
+
+	public int getMiddleRowIndex() {
+		return this.middleRowIndex;
+	}
+
+	public int getMiddleColIndex() {
+		return this.middleColIndex;
+	}
+
+	public float getMiddleXPosition() {
+
+		return ((OnePiece) this.smallMap[getMiddleRowIndex()][getMiddleColIndex()]).getxPosition();
+	}
+
+	public float getMiddleYPosition() {
+		return ((OnePiece) this.smallMap[getMiddleRowIndex()][getMiddleColIndex()]).getyPosition();
+	}
+
+public BackgrArray() {
+
+	this.startRowIndexForSmallMap = 0;
+	this.endRowIndexForSmallMap = 1;
+	this.startColIndexForSmallMap = 0;
+	this.endColIndexForSmallMap = 1;
+	
+}
+
+	public void resetTheSmallMap() {
+		this.smallMap = null;
+		this.smallMap = new Object[15][15];
+	}
+
+	public Object[][] createNextSmallMapBeforeWholeIsLoaded(int rowIndexBigMap, int colIndexBigMap) {
 		resetTheSmallMap();
-		float xPosition=0;
-		float yPosition=0;
+		float xPosition = 0;
+		float yPosition = 0;
 		for (int row = 0; row < 15; row++) {
 			for (int col = 0; col < 15; col++) {
 
 				int type = getPiece(rowIndexBigMap, colIndexBigMap, row, col);
-			
-				OnePiece onePiece = new OnePiece(type,xPosition,yPosition);
+
+				OnePiece onePiece = new OnePiece(type, xPosition, yPosition);
 				onePiece.setPenetration(type);
 				this.smallMap[row][col] = onePiece;
-				
+
 				onePiece = null;
 				xPosition += 46;
 			}
 			xPosition = 0;
 			yPosition += 46;
 		}
-		
+
 		return this.smallMap;
 	}
-	public int getMiddleRowIndex(){
-		return this.middleRowIndex;
-	}
-	public int getMiddleColIndex(){
-		return this.middleColIndex;
-	}
-	public SmallMap() {
 
-		this.startRowIndexForSmallMap = 0;
-		this.endRowIndexForSmallMap = 1;
-		this.startColIndexForSmallMap = 0;
-		this.endColIndexForSmallMap = 1;
-		
-	}
-
-	public void resetTheSmallMap() {
-		this.smallMap = null;
-		this.smallMap = new Object[15][15];
-	}
 	public Object[][] getSmallMap() {
 		return this.smallMap;
 	}
-	
+
+	public void setSmallMap(int row, int col, OnePiece onePiece) {
+		this.smallMap[row][col] = onePiece;
+	}
+
+	public void showLowestLevel(Object[][] array, SpriteBatch batch, LoadTexturesForMap loadTexturesForMap,
+			SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap) {
+
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 15; j++) {
+				int type = ((OnePiece) array[i][j]).getType();
+
+				batch.draw(loadTexturesForMap.checkTheTypeForLowestLevel(type), ((OnePiece) array[i][j]).getxPosition(),
+						((OnePiece) array[i][j]).getyPosition(), sizesOfObjectsOnTheMap.checkTheTypeForWidth(1),
+						sizesOfObjectsOnTheMap.checkTheTypeForHeight(1));
+
+			}
+
+		}
+
+	}
+
+	public void showHighestLevel(Object[][] array, SpriteBatch batch, LoadTexturesForMap loadTexturesForMap,
+			SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap) {
+
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 15; j++) {
+				int type = ((OnePiece) array[i][j]).getType();
+
+				if (type != 0 && type != 1 && type != 2 && type != 3) {
+					batch.draw(loadTexturesForMap.checkTheTypeForHighestLevel(type),
+							((OnePiece) array[i][j]).getxPosition(), ((OnePiece) array[i][j]).getyPosition(),
+							sizesOfObjectsOnTheMap.checkTheTypeForWidth(type),
+							sizesOfObjectsOnTheMap.checkTheTypeForHeight(type));
+				}
+
+			}
+
+		}
+
+	}
+
+	public Object[][] newMap(int rowIndexBigMap, int colIndexBigMap) {
+		return createNextSmallMapBeforeWholeIsLoaded(rowIndexBigMap, colIndexBigMap);
+
+	}
+
 	public int getPiece(int rowIndexBigMap, int colIndexBigMap, int row, int col) {
 		int[][] array = getTheSmallMap(rowIndexBigMap, colIndexBigMap);
 
@@ -229,8 +286,8 @@ public class SmallMap {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 3, 1, 1, 1, 1, 1, 2, 2, 1, 1, 10, 1, 1, 1 }, { 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1 },
+			{ 1, 3, 1, 1, 7, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 	private int smallMapZeroOne[][] = { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
@@ -353,5 +410,4 @@ public class SmallMap {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
-
 }
