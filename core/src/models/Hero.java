@@ -37,7 +37,7 @@ public class Hero {
 	}
 	public void centralizedThePositionForCollision(float xPositionForMovement, float yPositionForMovement){
 		setOldXPositionForCollision(xPositionForMovement);
-		setOldYPositionForMovement(yPositionForMovement);
+		setOldYPositionForCollision(yPositionForMovement);
 	
 	}
 
@@ -57,11 +57,10 @@ public class Hero {
 	public Hero(float xPositionForMovement, float yPositionForMovement, int heroMapRowPositionForMovement,
 			int heroMapColPositionForMovement) {
 
-		this.xPositionForMovement = xPositionForMovement;
-		this.yPositionForMovement = yPositionForMovement;
-		this.oldXPositionForMovement = xPositionForMovement;
-		this.oldYPositionForMovement = yPositionForMovement;
-		centralizedThePositionForCollision(xPositionForMovement, yPositionForMovement);
+
+		this.xPositionForMovement = xPositionForMovement+23;
+		this.yPositionForMovement = yPositionForMovement+23;
+		centralizedThePositionForCollision(this.xPositionForMovement,this. yPositionForMovement);
 		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement;
 		this.heroMapColPositionForMovement = heroMapColPositionForMovement;
 
@@ -85,15 +84,17 @@ public class Hero {
 
 	public void showHero(SpriteBatch batch) {
 
-		batch.draw(getLastTurn(), getxPositionForMovement(), getyPositionForMovement(), 56, 70);
+		batch.draw(getLastTurn(), getxPositionForMovement()-23, getyPositionForMovement()-23, 56, 70);
 
 	}
-
+	
 	public void update(float delta, SpriteBatch batch) {
 		// System.out.println("Y-" + yPositionForMovement);
 		// System.out.println("X-" + xPositionForMovement);
 		// System.out.println("OY-" + oldYPositionForMovement);
 		// System.out.println("OX-" + oldXPositionForMovement);
+		System.out.println("x="+getxPositionForMovement());
+		System.out.println("y="+getyPositionForMovement());
 		System.out.println("row=" + getHeroMapRowPositionForMovement());
 		System.out.println("col=" + getHeroMapColPositionForMovement());
 
@@ -108,10 +109,10 @@ public class Hero {
 		updateMapBoxPositionForMovement(checkForDirection());
 		if (checkForDirection() == 1) {
 			if (getOldXPositionForMovement() - getxPositionForMovement() < 50) {
-				batch.draw(getLeftLeftStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
+				batch.draw(getLeftLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
 
 			} else if (getOldXPositionForMovement() - getxPositionForMovement() > 50) {
-				batch.draw(getLeftRightStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
+				batch.draw(getLeftRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23,50,70);
 
 			}
 			if (getOldXPositionForMovement() - getxPositionForMovement() >= 100) {
@@ -121,10 +122,10 @@ public class Hero {
 			return true;
 		} else if (checkForDirection() == -1) {
 			if (getxPositionForMovement() - getOldXPositionForMovement() > 50) {
-				batch.draw(getRightLeftStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
+				batch.draw(getRightLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
 
 			} else if (getxPositionForMovement() - getOldXPositionForMovement() < 50) {
-				batch.draw(getRightRightStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
+				batch.draw(getRightRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
 
 			}
 			if (getxPositionForMovement() - getOldXPositionForMovement() >= 100) {
@@ -134,10 +135,10 @@ public class Hero {
 			return true;
 		} else if (checkForDirection() == 2) {
 			if (getyPositionForMovement() - getOldYPositionForMovement() > 50) {
-				batch.draw(getBackLeftStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
+				batch.draw(getBackLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
 
 			} else if (getyPositionForMovement() - getOldYPositionForMovement() < 50) {
-				batch.draw(getBackRightStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
+				batch.draw(getBackRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
 
 			}
 			if (getyPositionForMovement() - getOldYPositionForMovement() >= 100) {
@@ -148,10 +149,10 @@ public class Hero {
 		} else if (checkForDirection() == -2) {
 
 			if (getOldYPositionForMovement() - getyPositionForMovement() < 50) {
-				batch.draw(getFrontLeftStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
+				batch.draw(getFrontLeftStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
 
 			} else if (getOldYPositionForMovement() - getyPositionForMovement() > 50) {
-				batch.draw(getFrontRightStep(), getxPositionForMovement(), getyPositionForMovement(), 46, 46);
+				batch.draw(getFrontRightStep(), getxPositionForMovement()-23, getyPositionForMovement()-23, 50,70);
 
 			}
 			if (getOldYPositionForMovement() - getyPositionForMovement() >= 100) {
@@ -166,28 +167,29 @@ public class Hero {
 
 	private void updateMapBoxPositionForMovement(int checkForDirection) {
 		switch (checkForDirection) {
-		case -1:
-			if (xPositionForMovement >= oldXPositionForCollision + 23) {
-				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() + 1);
-				oldXPositionForCollision=xPositionForMovement;
+		case 1:
+			if (xPositionForMovement < oldXPositionForCollision-23 ) {
+				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() - 1);
+				oldXPositionForCollision=oldXPositionForCollision-46;
+				//centralizedThePositionForCollision
 			}
 			break;
-		case 1:
-			if (xPositionForMovement <= oldXPositionForCollision - 23) {
-				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() - 1);
-				oldXPositionForCollision=xPositionForMovement;
+		case -1:
+			if (xPositionForMovement > oldXPositionForCollision+23 ) {
+				setHeroMapColPositionForMovement(getHeroMapColPositionForMovement() + 1);
+				oldXPositionForCollision=oldXPositionForCollision+46;
 			}
 			break;
 		case 2:
-			if (yPositionForMovement >= oldYPositionForCollision + 46) {
+			if (yPositionForMovement > oldYPositionForCollision + 23) {
 				setHeroMapRowPositionForMovement(getHeroMapRowPositionForMovement() + 1);
-				oldYPositionForCollision=yPositionForMovement;
+				oldYPositionForCollision=oldYPositionForCollision+46;
 			}
 			break;
 		case -2:
-			if (yPositionForMovement <= oldYPositionForCollision - 46) {
+			if (yPositionForMovement < oldYPositionForCollision - 23) {
 				setHeroMapRowPositionForMovement(getHeroMapRowPositionForMovement() - 1);
-				oldYPositionForCollision=yPositionForMovement;
+				oldYPositionForCollision=oldYPositionForCollision-46;
 			}
 			break;
 		default:

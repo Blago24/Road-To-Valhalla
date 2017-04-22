@@ -1,6 +1,7 @@
 
 package map;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import sizes.SizesOfObjectsOnTheMap;
@@ -85,14 +86,14 @@ public SmallMap() {
 
 	public void resetTheSmallMap() {
 		this.smallMap = null;
-		this.smallMap = new Object[15][15];
+		this.smallMap = new Object[13][15];
 	}
 
 	public Object[][] createNextSmallMap(int rowIndexBigMap, int colIndexBigMap) {
 		resetTheSmallMap();
 		float xPosition = 0;
-		float yPosition = 0;
-		for (int row = 0; row < 15; row++) {
+		float yPosition = Gdx.graphics.getHeight();
+		for (int row = 0; row < 13; row++) {
 			for (int col = 0; col < 15; col++) {
 
 				int type = getPiece(rowIndexBigMap, colIndexBigMap, row, col);
@@ -105,7 +106,7 @@ public SmallMap() {
 				xPosition += 46;
 			}
 			xPosition = 0;
-			yPosition += 46;
+			yPosition -= 46;
 		}
 
 		return this.smallMap;
@@ -122,7 +123,7 @@ public SmallMap() {
 	public void showLowestLevel(Object[][] array, SpriteBatch batch, LoadTexturesForMap loadTexturesForMap,
 			SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap) {
 
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 13; i++) {
 			for (int j = 0; j < 15; j++) {
 				int type = ((OnePiece) array[i][j]).getType();
 
@@ -139,7 +140,7 @@ public SmallMap() {
 	public void showHighestLevel(Object[][] array, SpriteBatch batch, LoadTexturesForMap loadTexturesForMap,
 			SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap) {
 
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 13; i++) {
 			for (int j = 0; j < 15; j++) {
 				int type = ((OnePiece) array[i][j]).getType();
 
@@ -288,13 +289,20 @@ public SmallMap() {
 	}
 
 	private int smallMapZeroZero[][] = { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 7, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 1 },
+			{ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 },
+			{ 1, 1, 1, 1, 1, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 7, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1 } };
 	private int smallMapZeroOne[][] = { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
