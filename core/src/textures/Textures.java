@@ -3,11 +3,12 @@ package textures;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public class LoadTexturesForMap {
+public class Textures {
 	private Texture grass ;
 	private Texture water;
 	private Texture shop;
 	private Texture bar;
+	
 	private Texture grassWithRocks;
 	private Texture fatRock;
 	private Texture thinRock;
@@ -15,11 +16,11 @@ public class LoadTexturesForMap {
 	private Texture smallRock;
 	private Texture fatTree;
 	private Texture thenTree;
-	public LoadTexturesForMap() {
+	public Textures() {
 		
 		this.grass = new Texture("mapImages//GrassLast.png");
 	
-		this.bar= new Texture("mapImages//Bar.png");
+		this.bar=new Texture("mapImages//Bar.png");
 		this.grassWithRocks= new Texture("mapImages//GrassWithRocks.png");
 		
 		this.fatRock= new Texture("mapImages//Rock1.png");
@@ -77,4 +78,11 @@ public class LoadTexturesForMap {
 		
 			
 	}
+
+
+	public Texture getBar() {
+		return bar;
+	}
+
+
 }

@@ -50,19 +50,19 @@ public class InteracterPlayerMap {
 		} else {
 			if (yPosition > Gdx.graphics.getHeight() - 23 && rowIndexForCurrentMap > 0) {
 				setRowIndexForCurrentMap(getRowIndexForCurrentMap() - 1);
-				hero.setyPositionForMovement(23);
-				hero.setOldYPositionForMovement(23);
+				hero.setyPositionForMovement(23+138);
+				hero.setOldYPositionForMovement(23+138);
 				
 				return true;
 			}
 		}
 
-		if (yPosition < 0 && rowIndexForCurrentMap == 3) {
+		if (yPosition < 138 && rowIndexForCurrentMap == 3) {
 			hero.setyPositionForMovement(23);
 			hero.setOldYPositionForMovement(23);
 			return false;
 		} else {
-			if (yPosition < 0 && rowIndexForCurrentMap < 3) {
+			if (yPosition < 138 && rowIndexForCurrentMap < 3) {
 				setRowIndexForCurrentMap(getRowIndexForCurrentMap() + 1);
 				hero.setyPositionForMovement(Gdx.graphics.getHeight() - 23);
 				hero.setOldYPositionForMovement(Gdx.graphics.getHeight() - 23);

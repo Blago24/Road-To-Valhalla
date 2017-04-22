@@ -2,10 +2,12 @@
 package map;
 
 import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import sizes.SizesOfObjectsOnTheMap;
-import textures.LoadTexturesForMap;
+
+import textures.Textures;
 
 public class SmallMap {
 	private Object[][] smallMap;
@@ -120,7 +122,7 @@ public SmallMap() {
 		this.smallMap[row][col] = onePiece;
 	}
 
-	public void showLowestLevel(Object[][] array, SpriteBatch batch, LoadTexturesForMap loadTexturesForMap,
+	public void showLowestLevel(Object[][] array, SpriteBatch batch, Textures loadTexturesForMap,
 			SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap) {
 
 		for (int i = 0; i < 13; i++) {
@@ -137,7 +139,7 @@ public SmallMap() {
 
 	}
 
-	public void showHighestLevel(Object[][] array, SpriteBatch batch, LoadTexturesForMap loadTexturesForMap,
+	public void showHighestLevel(Object[][] array, SpriteBatch batch, Textures loadTexturesForMap,
 			SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap) {
 
 		for (int i = 0; i < 13; i++) {
