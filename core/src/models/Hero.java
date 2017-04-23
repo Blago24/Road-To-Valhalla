@@ -94,11 +94,9 @@ public class Hero {
 		System.out.println("OY" + getOldYPositionForMovement());
 		System.out.println("row=" + getHeroMapRowPositionForMovement());
 		System.out.println("col=" + getHeroMapColPositionForMovement());
-
-		if (!moveHero(batch)) {
-			showHero(batch);
-
-		}
+		
+		moveHero(batch);
+			
 		updateMapBoxPositionForMovement(checkForDirection());
 	}
 
@@ -284,7 +282,7 @@ public class Hero {
 		this.oldYPositionForMovement = oldYPositionForMovement;
 	}
 
-	private int checkForDirection() {
+	public int checkForDirection() {
 		if (Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT)
 				|| Gdx.input.isKeyPressed(Keys.DPAD_RIGHT)) {
 			setLastTurn(right);

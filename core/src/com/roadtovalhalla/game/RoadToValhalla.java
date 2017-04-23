@@ -33,15 +33,14 @@ public class RoadToValhalla extends ApplicationAdapter {
 	public RenderBar bar;
 
 	public InteracterPlayerMap interacterPlayerMap;
-	
-	
+
 	@Override
-	public void create () {
-				batch = new SpriteBatch();
+	public void create() {
+		batch = new SpriteBatch();
 		loadTexturesForMap = new Textures();
 		smallMap = new SmallMap();
 		smallMap.initializingSmallMap();
-		
+
 		sizesOfObjectsOnTheMap = new SizesOfObjectsOnTheMap();
 		wholeMap = new WholeMap();
 		wholeMap.initializingBigMap();
@@ -51,38 +50,47 @@ public class RoadToValhalla extends ApplicationAdapter {
 		System.out.println("dpdaa");
 		this.wholeMapArray = wholeMap.getMap();
 		interacterPlayerMap = new InteracterPlayerMap(0, 0);
-		//map = backgrArray.createNextSmallMapBeforeWholeIsLoaded(0, 0);
-		hero = new Hero(smallMap.getMiddleYPosition(), smallMap.getMiddleXPosition(),
-				smallMap.getMiddleRowIndex(), smallMap.getMiddleColIndex());
-		bar= new RenderBar();
-}
+		// map = backgrArray.createNextSmallMapBeforeWholeIsLoaded(0, 0);
+		hero = new Hero(smallMap.getMiddleYPosition(), smallMap.getMiddleXPosition(), smallMap.getMiddleRowIndex(),
+				smallMap.getMiddleColIndex());
+		bar = new RenderBar();
+	}
 
 	@Override
-	public void render () {
+	public void render() {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		update(this.batch);
 	}
+
 	private void update(SpriteBatch batch) {
 		batch.begin();
 
 		interacterPlayerMap.checkForCurrentMap(hero, hero.getxPositionForMovement(), hero.getyPositionForMovement());
-
+		
 		smallMap.showLowestLevel(
 				wholeMap.getOneBoxMap(interacterPlayerMap.getRowIndexForCurrentMap(),
 						interacterPlayerMap.getColIndexForCurrentMap()),
 				batch, loadTexturesForMap, sizesOfObjectsOnTheMap);
-
-		hero.update(Gdx.graphics.getDeltaTime(), batch);
+		if (interacterPlayerMap.checkForCollision(hero,
+				smallMap.getMapPiece(interacterPlayerMap.getColIndexForCurrentMap(),
+						interacterPlayerMap.getRowIndexForCurrentMap()),
+				batch)) {
+			hero.update(Gdx.graphics.getDeltaTime(), batch);
+		}else{
+			hero.showHero(batch);
+		}
 		smallMap.showHighestLevel(
 				wholeMap.getOneBoxMap(interacterPlayerMap.getRowIndexForCurrentMap(),
 						interacterPlayerMap.getColIndexForCurrentMap()),
 				batch, loadTexturesForMap, sizesOfObjectsOnTheMap);
-		bar.showBar(batch, loadTexturesForMap); 
+		bar.showBar(batch, loadTexturesForMap);
+		
 		batch.end();
 	}
+
 	@Override
-	public void dispose () {
+	public void dispose() {
 		super.dispose();
 	}
 }

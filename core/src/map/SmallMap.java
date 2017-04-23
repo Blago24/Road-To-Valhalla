@@ -54,7 +54,7 @@ public class SmallMap {
 	}
 
 	public void initializingSmallMap() {
-		this.smallMap = new Object[15][15];
+		this.smallMap = new Object[13][15];
 		this.middleColIndex = this.smallMap[0].length / 2;
 		this.middleRowIndex = this.smallMap.length / 2;
 
@@ -168,6 +168,11 @@ public SmallMap() {
 		int[][] array = getTheSmallMap(rowIndexBigMap, colIndexBigMap);
 
 		return array[row][col];
+
+	}
+	public int[][] getMapPiece(int rowIndexBigMap, int colIndexBigMap) {
+		return getTheSmallMap(rowIndexBigMap, colIndexBigMap);
+
 
 	}
 
