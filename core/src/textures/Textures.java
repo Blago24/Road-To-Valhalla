@@ -16,6 +16,12 @@ public class Textures {
 	private Texture smallRock;
 	private Texture fatTree;
 	private Texture thenTree;
+	private Texture hut;
+	private Texture biggestTree;
+	private Texture questGiver;
+	private Texture grassWithRoses;
+	private Texture grassWhiteFlowers;
+	private Texture fireTwo;
 	public Textures() {
 		
 		this.grass = new Texture("mapImages//GrassLast.png");
@@ -29,8 +35,12 @@ public class Textures {
 		this.smallRock= new Texture("mapImages//SmallRock.png");
 		this.fatTree= new Texture("mapImages//Tree1.png");
 		this.thenTree= new Texture("mapImages//Tree2.png");
-		
-		
+		this.hut= new Texture("mapImages//Hut.png");
+		this.biggestTree= new Texture("mapImages//Tree3.png");
+		this.questGiver= new Texture("mapImages//QuestGiver.png");
+this.grassWithRoses= new Texture("mapImages//GrasswithRoses.png");
+		this.grassWhiteFlowers= new Texture("mapImages//GrasswithWihiteFlowers.png");
+		this.fireTwo= new Texture("mapImages//Fire2.png");
 	}
 
 	
@@ -43,18 +53,17 @@ public class Textures {
 			
 		case 2:
 			return this.grassWithRocks;
+		
 		case 3:
-			return this.sapling;
+			return this.grassWithRoses;
+		case 4:
+			return this.grassWhiteFlowers;
 		default:
 			
 			return this.grass;
 			
-		
 		}
 		
-		
-		
-			
 	}
 	public Texture checkTheTypeForHighestLevel(int type){
 		switch (type) {
@@ -69,7 +78,16 @@ public class Textures {
 			return thenTree;
 		case 11:
 			return smallRock;
-		
+		case 13:
+			return hut;
+		case 14:
+			return biggestTree;
+		case 15:
+			return questGiver;
+		case 16:
+			return this.sapling;
+		case 17:
+			return this.fireTwo;
 		
 		default:
 			return grass;

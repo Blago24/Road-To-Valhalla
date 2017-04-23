@@ -49,10 +49,10 @@ public class RoadToValhalla extends ApplicationAdapter {
 		wholeMap.createMap(smallMap);
 		System.out.println("dpdaa");
 		this.wholeMapArray = wholeMap.getMap();
-		interacterPlayerMap = new InteracterPlayerMap(0, 0);
+		hero = new Hero(8,8);
+
+		interacterPlayerMap = new InteracterPlayerMap( 0, 0);
 		// map = backgrArray.createNextSmallMapBeforeWholeIsLoaded(0, 0);
-		hero = new Hero(smallMap.getMiddleYPosition(), smallMap.getMiddleXPosition(), smallMap.getMiddleRowIndex(),
-				smallMap.getMiddleColIndex());
 		bar = new RenderBar();
 	}
 
@@ -67,25 +67,22 @@ public class RoadToValhalla extends ApplicationAdapter {
 		batch.begin();
 
 		interacterPlayerMap.checkForCurrentMap(hero, hero.getxPositionForMovement(), hero.getyPositionForMovement());
-		
+
 		smallMap.showLowestLevel(
-				wholeMap.getOneBoxMap(interacterPlayerMap.getRowIndexForCurrentMap(),
+				smallMap.getMapPiece(interacterPlayerMap.getRowIndexForCurrentMap(),
 						interacterPlayerMap.getColIndexForCurrentMap()),
 				batch, loadTexturesForMap, sizesOfObjectsOnTheMap);
-		if (interacterPlayerMap.checkForCollision(hero,
-				smallMap.getMapPiece(interacterPlayerMap.getColIndexForCurrentMap(),
-						interacterPlayerMap.getRowIndexForCurrentMap()),
-				batch)) {
-			hero.update(Gdx.graphics.getDeltaTime(), batch);
-		}else{
-			hero.showHero(batch);
-		}
+		
+//		interacterPlayerMap.checkForCollision(hero, smallMap.getMapPiece(interacterPlayerMap.getRowIndexForCurrentMap(),
+//				interacterPlayerMap.getColIndexForCurrentMap()));
+		
+		hero.update(Gdx.graphics.getDeltaTime(), batch);
 		smallMap.showHighestLevel(
-				wholeMap.getOneBoxMap(interacterPlayerMap.getRowIndexForCurrentMap(),
+				smallMap.getMapPiece(interacterPlayerMap.getRowIndexForCurrentMap(),
 						interacterPlayerMap.getColIndexForCurrentMap()),
 				batch, loadTexturesForMap, sizesOfObjectsOnTheMap);
 		bar.showBar(batch, loadTexturesForMap);
-		
+
 		batch.end();
 	}
 

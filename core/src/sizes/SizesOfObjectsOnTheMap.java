@@ -27,7 +27,14 @@ public class SizesOfObjectsOnTheMap {
 			return 3*46;
 		case 11:
 			return 46;
-
+		case 13:
+			return 3*46;
+		case 15:
+			return 2*46;
+		case 17:
+			return 2*46;
+		case 14:
+			return 3*46;
 		default:
 			return 46;
 		}
@@ -57,7 +64,12 @@ public class SizesOfObjectsOnTheMap {
 			return  46;
 		case 11:
 			return 46;
-
+		case 13:
+			return 3*46;
+		case 17:
+			return 2*46;
+		case 14:
+			return 4*46;
 		default:
 			return 46;
 

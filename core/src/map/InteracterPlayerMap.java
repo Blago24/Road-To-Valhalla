@@ -13,38 +13,75 @@ public class InteracterPlayerMap {
 
 		this.setRowIndexForCurrentMap(rowIndexForCurrentMap);
 		this.setColIndexForCurrentMap(colIndexForCurrentMap);
-	}
 
-	public boolean checkForCollision(Hero hero, int[][] map, SpriteBatch batch) {
+	}
+	
+
+	public void checkForCollision(Hero hero, int[][] map) {
 
 		int lastDir = hero.checkForDirection();
-		switch (lastDir) {
-		// -1 left
-		// 1 right
-		// 2 top
-		// -2 down
-		case -1: {
-			if (map[hero.getHeroMapColPositionForMovement() - 1][hero.getHeroMapRowPositionForMovement()] <= 3) {
-				return true;
+		System.out.println("LAST " + lastDir);
+		// System.out.println("opaaaa "
+		// +map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()-1]);
+		// if(map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()]>3){
+		// hero.setxPositionForMovement(100);
+		// }
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
+				if (map[i][j] == 8) {
+					System.out.println("ETO Go = " + i + " " + j);
+				}
 			}
 		}
-		case 1: {
-			if (map[hero.getHeroMapColPositionForMovement() + 1][hero.getHeroMapRowPositionForMovement()] <= 3) {
-				return true;
-			}
+		System.out.println("da"+map[hero.getHeroMapColPositionForMovement()-1][hero.getHeroMapRowPositionForMovement()]);
+		if(map[hero.getHeroMapColPositionForMovement()-1][hero.getHeroMapRowPositionForMovement()]==8){
+			System.out.println("na kamuk si ");
 		}
-		case 2: {
-			if (map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()+1] <= 3) {
-				return true;
-			}
-		}
-		case -2: {
-			if (map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()-1] <= 3) {
-				return true;
-			}
-		}
-		}
-		return false;
+//		System.out.println("negoviq col" + hero.getHeroMapColPositionForMovement());
+//		System.out.println("negoviq row=" + hero.getHeroMapRowPositionForMovement() + "-1");
+//		switch (lastDir) {
+//		// -1 left
+//		// 1 right
+//		// 2 top
+//		// -2 down
+//		case -1: {
+//			if ((map[hero.getHeroMapColPositionForMovement()-1][hero.getHeroMapRowPositionForMovement()] < 3)
+//					&& map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()] > 0) {
+//				
+//			}else{
+//				hero.setxPositionForMovement(hero.getHeroMapColPositionForMovement() * 46);
+//				hero.setxPositionForMovement(hero.getHeroMapRowPositionForMovement() * 46);
+//			}
+//		}
+//		case 1: {
+//			if ((map[hero.getHeroMapColPositionForMovement()+1][hero.getHeroMapRowPositionForMovement()] < 3)
+//					&& map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()] > 0) {
+//				
+//			}else{
+//				hero.setxPositionForMovement(hero.getHeroMapColPositionForMovement() * 46);
+//				hero.setxPositionForMovement(hero.getHeroMapRowPositionForMovement() * 46);
+//			}
+//		}
+//		case 2: {
+//			if ((map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()+1] < 3)
+//					&& map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()] > 0) {
+//				
+//			}else{
+//				hero.setxPositionForMovement(hero.getHeroMapColPositionForMovement() * 46);
+//				hero.setxPositionForMovement(hero.getHeroMapRowPositionForMovement() * 46);
+//			}
+//		}
+//		case -2: {
+//			if ((map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()-1] < 3)
+//					&& map[hero.getHeroMapColPositionForMovement()][hero.getHeroMapRowPositionForMovement()] > 0) {
+//				
+//			}else{
+//				hero.setxPositionForMovement(hero.getHeroMapColPositionForMovement() * 46);
+//				hero.setxPositionForMovement(hero.getHeroMapRowPositionForMovement() * 46);
+//				
+//			}
+//		}
+//		}
 
 	}
 

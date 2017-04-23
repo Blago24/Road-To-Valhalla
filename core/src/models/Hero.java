@@ -41,16 +41,15 @@ public class Hero {
 	public Hero() {
 	}
 
-	public Hero(float xPositionForMovement, float yPositionForMovement, int heroMapRowPositionForMovement,
-			int heroMapColPositionForMovement) {
-
-		this.xPositionForMovement = xPositionForMovement + 23;
-		this.yPositionForMovement = yPositionForMovement + 23;
+	public Hero(int heroMapRowPositionForMovement, int heroMapColPositionForMovement) {
+		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement-1;
+		this.heroMapColPositionForMovement = heroMapColPositionForMovement-1;
+		this.xPositionForMovement = this.heroMapColPositionForMovement*46 + 23;
+		this.yPositionForMovement = Gdx.graphics.getHeight()-46-this.heroMapRowPositionForMovement*46 +23;
 		this.oldXPositionForMovement = this.xPositionForMovement;
 		this.oldYPositionForMovement = this.yPositionForMovement;
 		centralizedThePositionForCollision(this.xPositionForMovement, this.yPositionForMovement);
-		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement;
-		this.heroMapColPositionForMovement = heroMapColPositionForMovement;
+		
 
 		this.front = new Texture("heroImages//Front.png");
 		this.frontLeftBigStep = new Texture("heroImages//FrontLeftBigStep.png");
@@ -95,7 +94,9 @@ public class Hero {
 		System.out.println("row=" + getHeroMapRowPositionForMovement());
 		System.out.println("col=" + getHeroMapColPositionForMovement());
 		
-		moveHero(batch);
+		if(!moveHero(batch)){
+			showHero(batch);
+		}
 			
 		updateMapBoxPositionForMovement(checkForDirection());
 	}
@@ -257,6 +258,7 @@ public class Hero {
 			if (yPositionForMovement < oldYPositionForCollision - 23) {
 				setHeroMapRowPositionForMovement(getHeroMapRowPositionForMovement() + 1);
 				oldYPositionForCollision = oldYPositionForCollision - 46;
+
 			}
 			break;
 		default:
