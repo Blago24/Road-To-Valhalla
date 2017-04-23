@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Hero {
+	float height;
+	float width;
 	float xPositionForMovement;
 	float yPositionForMovement;
 	float oldXPositionForMovement;
@@ -103,11 +105,35 @@ public class Hero {
 	private Texture leftLeftBigStepB;
 	private Texture frontRightBigStepB;
 	private Texture frontLeftBigStepB;
-
+	private Texture frontH;
+	private Texture frontLeftBigStepH;
+	private Texture frontLeftStepH;
+	private Texture frontRightBigStepH;
+	private Texture frontRightStepH;
+	private Texture leftH;
+	private Texture leftLeftBigStepH;
+	private Texture leftLeftStepH;
+	private Texture leftRightBigStepH;
+	private Texture leftRightStepH;
+	private Texture rightH;
+	private Texture rightLeftStepH;
+	private Texture rightLeftBigStepH;
+	private Texture rightRightBigStepH;
+	private Texture rightRightStepH;
+	private Texture backH;
+	private Texture backLeftBigStepH;
+	private Texture backLeftStepH;
+	private Texture backRightBigStepH;
+	private Texture backRightStepH;
+	private Texture lastTurnH;
+	
 	public Hero() {
 	}
 
 	public Hero(int heroMapRowPositionForMovement, int heroMapColPositionForMovement) {
+		this.height=50;
+		this.width=70;
+		 
 		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement - 1;
 		this.heroMapColPositionForMovement = heroMapColPositionForMovement - 1;
 		this.xPositionForMovement = this.heroMapColPositionForMovement * 46 + 23;
@@ -115,7 +141,7 @@ public class Hero {
 		this.oldXPositionForMovement = this.xPositionForMovement;
 		this.oldYPositionForMovement = this.yPositionForMovement;
 		centralizedThePositionForCollision(this.xPositionForMovement, this.yPositionForMovement);
-
+		
 		this.front = new Texture("heroImages//Front.png");
 		this.frontLeftBigStep = new Texture("heroImages//FrontLeftBigStep.png");
 		this.frontLeftStep = new Texture("heroImages//FrontLeftStep.png");
@@ -139,7 +165,32 @@ public class Hero {
 		this.backLeftStep = new Texture("heroImages//BackLeftStep.png");
 		this.backRightBigStep = new Texture("heroImages//BackRightBigStep.png");
 		this.backRightStep = new Texture("heroImages//BackRightStep.png");
+		this.lastTurn=this.front;
+		this.frontH = this.front;
+		this.frontLeftBigStepH = this.frontLeftBigStep;
+		this.frontLeftStepH = this.frontLeftStep;
+		this.frontRightBigStepH = this.frontRightBigStep;
+		this.frontRightStepH = this.frontRightStep;
 
+		this.leftH = this.left;
+		this.leftLeftBigStepH =this.leftLeftBigStep;
+		this.leftLeftStepH = this.leftLeftStep;
+		this.leftRightBigStepH = this.leftRightBigStep;
+		this.leftRightStepH = this.leftRightStep;
+
+		this.rightH = this.right;
+		this.rightLeftBigStepH = this.rightLeftBigStep;
+		this.rightLeftStepH = this.rightLeftStep;
+		this.rightRightBigStepH = this.rightRightBigStep;
+		this.rightRightStepH =this.rightRightStep;
+
+		this.backH = this.back;
+		this.backLeftBigStepH = this.backLeftBigStep;
+		this.backLeftStepH = this.backLeftStep;
+		this.backRightBigStepH =this.backRightBigStep;
+		this.backRightStepH =this.backRightStep;
+		this.lastTurnH=this.frontH;
+		
 		this.frontR = new Texture("heroImages//Rabbit-front.png");
 		this.frontLeftStepR = new Texture("heroImages//Rabbit-front-step1.png");
 		this.frontRightStepR = new Texture("heroImages//Rabbit-front-step2.png");
@@ -163,6 +214,7 @@ public class Hero {
 		this.backRightStepR = new Texture("heroImages//Rabbit-back-step2.png");
 		this.backRightBigStepR = new Texture("heroImages//Rabbit-back-step2.png");
 		this.backLeftBigStepR = new Texture("heroImages//Rabbit-back-step3.png");
+		this.lastTurnR=this.frontR;
 
 		this.frontD = new Texture("heroImages//Deer-front.png");
 		this.frontLeftStepD = new Texture("heroImages//Deer-frontStep1.png");
@@ -187,6 +239,7 @@ public class Hero {
 		this.backRightStepD = new Texture("heroImages//Deer-BackStep2.png");
 		this.backLeftBigStepD = new Texture("heroImages//Deer-BackStep2.png");
 		this.backRightBigStepD = new Texture("heroImages//Deer-BackStep3.png");
+		this.lastTurnD=this.frontD;
 
 		this.frontB = new Texture("heroImages//Bear-front.png");
 		this.frontLeftStepB = new Texture("heroImages//Bear-frontStep1.png");
@@ -211,15 +264,14 @@ public class Hero {
 		this.backRightStepB = new Texture("heroImages//Bear-BackStep2.png");
 		this.backLeftBigStepB = new Texture("heroImages//Bear-BackStep1.png");
 		this.backRightBigStepB = new Texture("heroImages//Bear-BackStep2.png");
-
+		this.lastTurnB=this.frontB;
 		this.lastTurn = this.front;
 	}
 
 	public void showHero(SpriteBatch batch) {
 		this.oldXPositionForMovement = this.getxPositionForMovement();
 		this.oldYPositionForMovement = this.getyPositionForMovement();
-		batch.draw(getLastTurn(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 56, 70);
-
+		batch.draw(getLastTurn(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 	}
 
 	public void update(float delta, SpriteBatch batch) {
@@ -242,29 +294,27 @@ public class Hero {
 
 		if (checkForDirection() == -1) {
 			if (getOldXPositionForMovement() - getxPositionForMovement() < 30) {
-				batch.draw(getLeftLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getLeftLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, height, width);
 
 			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 30
 					&& getOldXPositionForMovement() - getxPositionForMovement() < 60) {
-				batch.draw(getLeftLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
-						70);
+				batch.draw(getLeftLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 60
 					&& getOldXPositionForMovement() - getxPositionForMovement() < 90) {
-				batch.draw(getLeftLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getLeftLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 90
 					&& getOldXPositionForMovement() - getxPositionForMovement() < 120) {
-				batch.draw(getLeftRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getLeftRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 120
 					&& getOldXPositionForMovement() - getxPositionForMovement() < 150) {
-				batch.draw(getLeftRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
-						70);
+				batch.draw(getLeftRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getOldXPositionForMovement() - getxPositionForMovement() >= 150
 					&& getOldXPositionForMovement() - getxPositionForMovement() < 180) {
-				batch.draw(getLeftRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getLeftRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else {
 				oldXPositionForMovement = xPositionForMovement;
@@ -274,29 +324,27 @@ public class Hero {
 		} else if (checkForDirection() == 1) {
 
 			if (getxPositionForMovement() - getOldXPositionForMovement() < 30) {
-				batch.draw(getRightLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getRightLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, height, width);
 
 			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 30
 					&& getxPositionForMovement() - getOldXPositionForMovement() < 60) {
-				batch.draw(getRightLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
-						70);
+				batch.draw(getRightLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, height, width);
 
 			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 60
 					&& getxPositionForMovement() - getOldXPositionForMovement() < 90) {
-				batch.draw(getRightLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getRightLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 90
 					&& getxPositionForMovement() - getOldXPositionForMovement() < 120) {
-				batch.draw(getRightRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getRightRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 120
 					&& getxPositionForMovement() - getOldXPositionForMovement() < 150) {
-				batch.draw(getRightRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
-						70);
+				batch.draw(getRightRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getxPositionForMovement() - getOldXPositionForMovement() >= 150
 					&& getxPositionForMovement() - getOldXPositionForMovement() < 180) {
-				batch.draw(getRightRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getRightRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else {
 				this.oldXPositionForMovement = this.xPositionForMovement;
@@ -305,29 +353,27 @@ public class Hero {
 			return true;
 		} else if (checkForDirection() == 2) {
 			if (getyPositionForMovement() - getOldYPositionForMovement() < 30) {
-				batch.draw(getBackLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getBackLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 30
 					&& getyPositionForMovement() - getOldYPositionForMovement() < 60) {
-				batch.draw(getBackLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
-						70);
+				batch.draw(getBackLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, height, width);
 
 			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 60
 					&& getyPositionForMovement() - getOldYPositionForMovement() < 90) {
-				batch.draw(getBackLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getBackLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 90
 					&& getyPositionForMovement() - getOldYPositionForMovement() < 120) {
-				batch.draw(getBackRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getBackRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 120
 					&& getyPositionForMovement() - getOldYPositionForMovement() < 150) {
-				batch.draw(getBackRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
-						70);
+				batch.draw(getBackRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getyPositionForMovement() - getOldYPositionForMovement() >= 150
 					&& getyPositionForMovement() - getOldYPositionForMovement() < 180) {
-				batch.draw(getBackRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getBackRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else {
 				this.oldYPositionForMovement = this.yPositionForMovement;
@@ -336,29 +382,26 @@ public class Hero {
 			return true;
 		} else if (checkForDirection() == -2) {
 			if (getOldYPositionForMovement() - getyPositionForMovement() < 30) {
-				batch.draw(getFrontLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getFrontLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 30
 					&& getOldYPositionForMovement() - getyPositionForMovement() < 60) {
-				batch.draw(getFrontLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
-						70);
-
+				batch.draw(getFrontLeftBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 60
 					&& getOldYPositionForMovement() - getyPositionForMovement() < 90) {
-				batch.draw(getFrontLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getFrontLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 90
 					&& getOldYPositionForMovement() - getyPositionForMovement() < 120) {
-				batch.draw(getFrontRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getFrontRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 120
 					&& getOldYPositionForMovement() - getyPositionForMovement() < 150) {
-				batch.draw(getFrontRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50,
-						70);
+				batch.draw(getFrontRightBigStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, height, width);
 
 			} else if (getOldYPositionForMovement() - getyPositionForMovement() >= 150
 					&& getOldYPositionForMovement() - getyPositionForMovement() < 180) {
-				batch.draw(getFrontRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
+				batch.draw(getFrontRightStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23,  height, width);
 
 			} else {
 				oldYPositionForMovement = yPositionForMovement;
@@ -450,32 +493,38 @@ public class Hero {
 	public void choose() {
 
 		if (Gdx.input.isKeyJustPressed(Keys.H)) {
-			this.front = new Texture("heroImages//Front.png");
-			this.frontLeftBigStep = new Texture("heroImages//FrontLeftBigStep.png");
-			this.frontLeftStep = new Texture("heroImages//FrontLeftStep.png");
-			this.frontRightBigStep = new Texture("heroImages//FrontRightBigStep.png");
-			this.frontRightStep = new Texture("heroImages//FrontRightStep.png");
+			 height=50;
+			 width=70;
+			 this.lastTurn=this.lastTurnH;
+			this.front = this.frontH;
+			this.frontLeftBigStep = this.frontLeftBigStepH;
+			this.frontLeftStep= this.frontLeftStepH;
+			this.frontRightBigStep = this.frontRightBigStepH;
+			this.frontRightStep= this.frontRightStepH;
 
-			this.left = new Texture("heroImages//Left.png");
-			this.leftLeftBigStep = new Texture("heroImages//LeftBigLeftStep.png");
-			this.leftLeftStep = new Texture("heroImages//LeftLeftStep.png");
-			this.leftRightBigStep = new Texture("heroImages//LeftBigRightStep.png");
-			this.leftRightStep = new Texture("heroImages//LeftRightStep.png");
+			this.left = this.leftH;
+			this.leftLeftBigStep =this.leftLeftBigStepH;
+			this.leftLeftStep = this.leftLeftStepH;
+			this.leftRightBigStep = this.leftRightBigStepH;
+			this.leftRightStep = this.leftRightStepH;
 
-			this.right = new Texture("heroImages//Right.png");
-			this.rightLeftBigStep = new Texture("heroImages//RightBigLeftStep.png");
-			this.rightLeftStep = new Texture("heroImages//RightLeftStep.png");
-			this.rightRightBigStep = new Texture("heroImages//RightBigRightStep.png");
-			this.rightRightStep = new Texture("heroImages//RightRightStep.png");
+			this.right = this.rightH;
+			this.rightLeftBigStep = this.rightLeftBigStepH;
+			this.rightLeftStep = this.rightLeftStepH;
+			this.rightRightBigStep = this.rightRightBigStepH;
+			this.rightRightStep =this.rightRightStepH;
 
-			this.back = new Texture("heroImages//Back.png");
-			this.backLeftBigStep = new Texture("heroImages//BackLeftBigStep.png");
-			this.backLeftStep = new Texture("heroImages//BackLeftStep.png");
-			this.backRightBigStep = new Texture("heroImages//BackRightBigStep.png");
-			this.backRightStep = new Texture("heroImages//BackRightStep.png");
+			this.back = this.backH;
+			this.backLeftBigStep = this.backLeftBigStepH;
+			this.backLeftStep = this.backLeftStepH;
+			this.backRightBigStep =this.backRightBigStepH;
+			this.backRightStep =this.backRightStepH;
 			
 
 		} else if (Gdx.input.isKeyJustPressed(Keys.J)) {
+			height=138;
+			 width=92;
+			 this.lastTurn=this.lastTurnB;
 			this.front =this.frontB;
 			this.frontLeftBigStep =this.frontLeftBigStepB;
 			this.frontLeftStep = this.frontLeftStepB;
@@ -504,6 +553,9 @@ public class Hero {
 			
 
 		} else if (Gdx.input.isKeyPressed(Keys.K)) {
+			height=138;
+			 width=92;
+			 this.lastTurn=this.lastTurnD;
 			this.front =this.frontD;
 			this.frontLeftBigStep =this.frontLeftBigStepD;
 			this.frontLeftStep = this.frontLeftStepD;
@@ -531,30 +583,33 @@ public class Hero {
 
 			
 
-		} else if (Gdx.input.isKeyPressed(Keys.R)) {
-			this.front =this.frontB;
-			this.frontLeftBigStep =this.frontLeftBigStepB;
-			this.frontLeftStep = this.frontLeftStepB;
-			this.frontRightBigStep =this.frontRightBigStepB;
-			this.frontRightStep = this.frontRightStepB;
+		} else if (Gdx.input.isKeyPressed(Keys.L)) {
+			height=46;
+			 width=46;
+			 this.lastTurn=this.lastTurnR;
+			this.front =this.frontR;
+			this.frontLeftBigStep =this.frontLeftBigStepR;
+			this.frontLeftStep = this.frontLeftStepR;
+			this.frontRightBigStep =this.frontRightBigStepR;
+			this.frontRightStep = this.frontRightStepR;
 
-			this.left =this.leftB;
-			this.leftLeftBigStep = this.leftLeftBigStepB;
-			this.leftLeftStep = this.leftLeftStepB;
-			this.leftRightBigStep =this.leftRightBigStepB;
-			this.leftRightStep = this.leftRightStepB;
+			this.left =this.leftR;
+			this.leftLeftBigStep = this.leftLeftBigStepR;
+			this.leftLeftStep = this.leftLeftStepR;
+			this.leftRightBigStep =this.leftRightBigStepR;
+			this.leftRightStep = this.leftRightStepR;
 
-			this.right = this.rightB;
-			this.rightLeftBigStep = this.rightLeftBigStepB;
-			this.rightLeftStep =this.rightLeftStepB;
-			this.rightRightBigStep = this.rightRightBigStepB;
-			this.rightRightStep = this.rightRightStepB;
+			this.right = this.rightR;
+			this.rightLeftBigStep = this.rightLeftBigStepR;
+			this.rightLeftStep =this.rightLeftStepR;
+			this.rightRightBigStep = this.rightRightBigStepR;
+			this.rightRightStep = this.rightRightStepR;
 
-			this.back =this.backB;
-			this.backLeftBigStep = this.backLeftBigStepB;
-			this.backLeftStep = this.backLeftBigStepB;
-			this.backRightBigStep = this.backRightBigStepB;
-			this.backRightStep = this.backRightStepB;
+			this.back =this.backR;
+			this.backLeftBigStep = this.backLeftBigStepR;
+			this.backLeftStep = this.backLeftBigStepR;
+			this.backRightBigStep = this.backRightBigStepR;
+			this.backRightStep = this.backRightStepR;
 
 
 			

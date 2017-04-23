@@ -88,12 +88,13 @@ public int playerChoice;
 //		interacterPlayerMap.checkForCollision(hero, smallMap.getMapPiece(interacterPlayerMap.getRowIndexForCurrentMap(),
 //				interacterPlayerMap.getColIndexForCurrentMap()));
 		
-		hero.update(Gdx.graphics.getDeltaTime(), batch);
 		smallMap.showHighestLevel(
 				smallMap.getMapPiece(interacterPlayerMap.getRowIndexForCurrentMap(),
 						interacterPlayerMap.getColIndexForCurrentMap()),
 				batch, loadTexturesForMap, sizesOfObjectsOnTheMap);
 		bar.showBar(batch, loadTexturesForMap);
+
+		hero.update(Gdx.graphics.getDeltaTime(), batch);
 		hero.choose();
 		batch.end();
 	}
