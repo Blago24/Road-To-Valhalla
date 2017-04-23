@@ -3,6 +3,7 @@ package com.roadtovalhalla.game;
 import java.awt.RenderingHints.Key;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.security.auth.kerberos.KerberosKey;
 
@@ -10,10 +11,14 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.assets.AssetLoaderParameters.LoadedCallback;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import entity.Entity;
 import map.InteracterPlayerMap;
 import map.RenderBar;
 import map.SmallMap;
@@ -35,9 +40,12 @@ public class RoadToValhalla extends ApplicationAdapter {
 	public WholeMap wholeMap;
 	public SmallMap smallMap;
 	public Hero hero;
+	public Hero newHero;
 	public Textures loadTexturesForMap;
 	public SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap;
 	public RenderBar bar;
+	private Sound sound;
+	Entity bunny;
 private char playerType ;
 public int playerChoice;
 	public InteracterPlayerMap interacterPlayerMap;
@@ -60,9 +68,9 @@ public int playerChoice;
 		System.out.println("dpdaa");
 		this.wholeMapArray = wholeMap.getMap();
 		hero = new Hero(8,8);
-
-		interacterPlayerMap = new InteracterPlayerMap( 0, 0);
-		// map = backgrArray.createNextSmallMapBeforeWholeIsLoaded(0, 0);
+		newHero= new Hero(7,7);
+		interacterPlayerMap = new InteracterPlayerMap(0,0);
+		
 		bar = new RenderBar();
 	}
 
@@ -95,7 +103,9 @@ public int playerChoice;
 		bar.showBar(batch, loadTexturesForMap);
 
 		hero.update(Gdx.graphics.getDeltaTime(), batch);
+		
 		hero.choose();
+		
 		batch.end();
 	}
 
