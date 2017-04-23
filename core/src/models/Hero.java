@@ -38,18 +38,83 @@ public class Hero {
 	private Texture frontRightBigStep;
 	private Texture frontLeftBigStep;
 
+	private Texture frontR;
+	private Texture frontLeftStepR;
+	private Texture frontRightStepR;
+	private Texture leftR;
+	private Texture leftLeftStepR;
+	private Texture leftRightStepR;
+	private Texture rightR;
+	private Texture rightLeftStepR;
+	private Texture rightRightStepR;
+	private Texture backR;
+	private Texture backLeftStepR;
+	private Texture backRightStepR;
+	private Texture lastTurnR;
+	private Texture backRightBigStepR;
+	private Texture backLeftBigStepR;
+	private Texture rightRightBigStepR;
+	private Texture rightLeftBigStepR;
+	private Texture leftRightBigStepR;
+	private Texture leftLeftBigStepR;
+	private Texture frontRightBigStepR;
+	private Texture frontLeftBigStepR;
+
+	private Texture frontD;
+	private Texture frontLeftStepD;
+	private Texture frontRightStepD;
+	private Texture leftD;
+	private Texture leftLeftStepD;
+	private Texture leftRightStepD;
+	private Texture rightD;
+	private Texture rightLeftStepD;
+	private Texture rightRightStepD;
+	private Texture backD;
+	private Texture backLeftStepD;
+	private Texture backRightStepD;
+	private Texture lastTurnD;
+	private Texture backRightBigStepD;
+	private Texture backLeftBigStepD;
+	private Texture rightRightBigStepD;
+	private Texture rightLeftBigStepD;
+	private Texture leftRightBigStepD;
+	private Texture leftLeftBigStepD;
+	private Texture frontRightBigStepD;
+	private Texture frontLeftBigStepD;
+
+	private Texture frontB;
+	private Texture frontLeftStepB;
+	private Texture frontRightStepB;
+	private Texture leftB;
+	private Texture leftLeftStepB;
+	private Texture leftRightStepB;
+	private Texture rightB;
+	private Texture rightLeftStepB;
+	private Texture rightRightStepB;
+	private Texture backB;
+	private Texture backLeftStepB;
+	private Texture backRightStepB;
+	private Texture lastTurnB;
+	private Texture backRightBigStepB;
+	private Texture backLeftBigStepB;
+	private Texture rightRightBigStepB;
+	private Texture rightLeftBigStepB;
+	private Texture leftRightBigStepB;
+	private Texture leftLeftBigStepB;
+	private Texture frontRightBigStepB;
+	private Texture frontLeftBigStepB;
+
 	public Hero() {
 	}
 
 	public Hero(int heroMapRowPositionForMovement, int heroMapColPositionForMovement) {
-		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement-1;
-		this.heroMapColPositionForMovement = heroMapColPositionForMovement-1;
-		this.xPositionForMovement = this.heroMapColPositionForMovement*46 + 23;
-		this.yPositionForMovement = Gdx.graphics.getHeight()-46-this.heroMapRowPositionForMovement*46 +23;
+		this.heroMapRowPositionForMovement = heroMapRowPositionForMovement - 1;
+		this.heroMapColPositionForMovement = heroMapColPositionForMovement - 1;
+		this.xPositionForMovement = this.heroMapColPositionForMovement * 46 + 23;
+		this.yPositionForMovement = Gdx.graphics.getHeight() - 46 - this.heroMapRowPositionForMovement * 46 + 23;
 		this.oldXPositionForMovement = this.xPositionForMovement;
 		this.oldYPositionForMovement = this.yPositionForMovement;
 		centralizedThePositionForCollision(this.xPositionForMovement, this.yPositionForMovement);
-		
 
 		this.front = new Texture("heroImages//Front.png");
 		this.frontLeftBigStep = new Texture("heroImages//FrontLeftBigStep.png");
@@ -75,6 +140,78 @@ public class Hero {
 		this.backRightBigStep = new Texture("heroImages//BackRightBigStep.png");
 		this.backRightStep = new Texture("heroImages//BackRightStep.png");
 
+		this.frontR = new Texture("heroImages//Rabbit-front.png");
+		this.frontLeftStepR = new Texture("heroImages//Rabbit-front-step1.png");
+		this.frontRightStepR = new Texture("heroImages//Rabbit-front-step2.png");
+		this.frontLeftBigStepR = new Texture("heroImages//Rabbit-front-step2.png");
+		this.frontRightBigStepR = new Texture("heroImages//Rabbit-front-step3.png");
+
+		this.leftR = new Texture("heroImages//Rabbit-left.png");
+		this.leftLeftStepR = new Texture("heroImages//Rabbit-left-step1.png");
+		this.leftRightStepR = new Texture("heroImages//Rabbit-left-step2.png");
+		this.leftLeftBigStepR = new Texture("heroImages//Rabbit-left-step2.png");
+		this.leftRightBigStepR = new Texture("heroImages//Rabbit-left-step3.png");
+
+		this.rightR = new Texture("heroImages//Rabbit-right.png");
+		this.rightLeftStepR = new Texture("heroImages//Rabbit-right-step1.png");
+		this.rightRightStepR = new Texture("heroImages//Rabbit-right-step2.png");
+		this.rightLeftBigStepR = new Texture("heroImages//Rabbit-right-step2.png");
+		this.rightRightBigStepR = new Texture("heroImages//Rabbit-right-step3.png");
+
+		this.backR = new Texture("heroImages//Rabbit-back.png");
+		this.backLeftStepR = new Texture("heroImages//Rabbit-back-step1.png");
+		this.backRightStepR = new Texture("heroImages//Rabbit-back-step2.png");
+		this.backRightBigStepR = new Texture("heroImages//Rabbit-back-step2.png");
+		this.backLeftBigStepR = new Texture("heroImages//Rabbit-back-step3.png");
+
+		this.frontD = new Texture("heroImages//Deer-front.png");
+		this.frontLeftStepD = new Texture("heroImages//Deer-frontStep1.png");
+		this.frontRightStepD = new Texture("heroImages//Deer-frontStep2.png");
+		this.frontLeftBigStepD = new Texture("heroImages//Deer-frontStep2.png");
+		this.frontRightBigStepD = new Texture("heroImages//Deer-frontStep3.png");
+
+		this.leftD = new Texture("heroImages//Deer-left.png");
+		this.leftLeftStepD = new Texture("heroImages//Deer-left-step1.png");
+		this.leftRightStepD = new Texture("heroImages//Deer-left-step2.png");
+		this.leftLeftBigStepD = new Texture("heroImages//Deer-left-step2.png");
+		this.leftRightBigStepD = new Texture("heroImages//Deer-left-step3.png");
+
+		this.rightD = new Texture("heroImages//Deer-right.png");
+		this.rightLeftStepD = new Texture("heroImages//Deer-right-step1.png");
+		this.rightRightStepD = new Texture("heroImages//Deer-right-step2.png");
+		this.rightLeftBigStepD = new Texture("heroImages//Deer-right-step2.png");
+		this.rightRightBigStepD = new Texture("heroImages//Deer-right-step3.png");
+
+		this.backD = new Texture("heroImages//Deer-Back.png");
+		this.backLeftStepD = new Texture("heroImages//Deer-BackStep1.png");
+		this.backRightStepD = new Texture("heroImages//Deer-BackStep2.png");
+		this.backLeftBigStepD = new Texture("heroImages//Deer-BackStep2.png");
+		this.backRightBigStepD = new Texture("heroImages//Deer-BackStep3.png");
+
+		this.frontB = new Texture("heroImages//Bear-front.png");
+		this.frontLeftStepB = new Texture("heroImages//Bear-frontStep1.png");
+		this.frontRightStepB = new Texture("heroImages//Bear-frontStep2.png");
+		this.frontLeftBigStepB = new Texture("heroImages//Bear-frontStep1.png");
+		this.frontRightBigStepB = new Texture("heroImages//Bear-frontStep2.png");
+
+		this.leftB = new Texture("heroImages//Bear-left.png");
+		this.leftLeftStepB = new Texture("heroImages//Bear-leftStep1.png");
+		this.leftRightStepB = new Texture("heroImages//Bear-leftStep2.png");
+		this.leftLeftBigStepB = new Texture("heroImages//Bear-leftStep1.png");
+		this.leftRightBigStepB = new Texture("heroImages//Bear-leftStep2.png");
+
+		this.rightB = new Texture("heroImages//Bear-right.png");
+		this.rightLeftStepB = new Texture("heroImages//Bear-rightStep1.png");
+		this.rightRightStepB = new Texture("heroImages//Bear-rightStep2.png");
+		this.rightLeftBigStepB = new Texture("heroImages//Bear-rightStep1.png");
+		this.rightRightBigStepB = new Texture("heroImages//Bear-rightStep2.png");
+
+		this.backB = new Texture("heroImages//Bear-Back.png");
+		this.backLeftStepB = new Texture("heroImages//Bear-BackStep1.png");
+		this.backRightStepB = new Texture("heroImages//Bear-BackStep2.png");
+		this.backLeftBigStepB = new Texture("heroImages//Bear-BackStep1.png");
+		this.backRightBigStepB = new Texture("heroImages//Bear-BackStep2.png");
+
 		this.lastTurn = this.front;
 	}
 
@@ -93,16 +230,16 @@ public class Hero {
 		System.out.println("OY" + getOldYPositionForMovement());
 		System.out.println("row=" + getHeroMapRowPositionForMovement());
 		System.out.println("col=" + getHeroMapColPositionForMovement());
-		
-		if(!moveHero(batch)){
+
+		if (!moveHero(batch)) {
 			showHero(batch);
 		}
-			
+
 		updateMapBoxPositionForMovement(checkForDirection());
 	}
 
 	public boolean moveHero(SpriteBatch batch) {
-		
+
 		if (checkForDirection() == -1) {
 			if (getOldXPositionForMovement() - getxPositionForMovement() < 30) {
 				batch.draw(getLeftLeftStep(), getxPositionForMovement() - 23, getyPositionForMovement() - 23, 50, 70);
@@ -308,6 +445,121 @@ public class Hero {
 
 		return 0;
 
+	}
+
+	public void choose() {
+
+		if (Gdx.input.isKeyJustPressed(Keys.H)) {
+			this.front = new Texture("heroImages//Front.png");
+			this.frontLeftBigStep = new Texture("heroImages//FrontLeftBigStep.png");
+			this.frontLeftStep = new Texture("heroImages//FrontLeftStep.png");
+			this.frontRightBigStep = new Texture("heroImages//FrontRightBigStep.png");
+			this.frontRightStep = new Texture("heroImages//FrontRightStep.png");
+
+			this.left = new Texture("heroImages//Left.png");
+			this.leftLeftBigStep = new Texture("heroImages//LeftBigLeftStep.png");
+			this.leftLeftStep = new Texture("heroImages//LeftLeftStep.png");
+			this.leftRightBigStep = new Texture("heroImages//LeftBigRightStep.png");
+			this.leftRightStep = new Texture("heroImages//LeftRightStep.png");
+
+			this.right = new Texture("heroImages//Right.png");
+			this.rightLeftBigStep = new Texture("heroImages//RightBigLeftStep.png");
+			this.rightLeftStep = new Texture("heroImages//RightLeftStep.png");
+			this.rightRightBigStep = new Texture("heroImages//RightBigRightStep.png");
+			this.rightRightStep = new Texture("heroImages//RightRightStep.png");
+
+			this.back = new Texture("heroImages//Back.png");
+			this.backLeftBigStep = new Texture("heroImages//BackLeftBigStep.png");
+			this.backLeftStep = new Texture("heroImages//BackLeftStep.png");
+			this.backRightBigStep = new Texture("heroImages//BackRightBigStep.png");
+			this.backRightStep = new Texture("heroImages//BackRightStep.png");
+			
+
+		} else if (Gdx.input.isKeyJustPressed(Keys.J)) {
+			this.front =this.frontB;
+			this.frontLeftBigStep =this.frontLeftBigStepB;
+			this.frontLeftStep = this.frontLeftStepB;
+			this.frontRightBigStep =this.frontRightBigStepB;
+			this.frontRightStep = this.frontRightStepB;
+
+			this.left =this.leftB;
+			this.leftLeftBigStep = this.leftLeftBigStepB;
+			this.leftLeftStep = this.leftLeftStepB;
+			this.leftRightBigStep =this.leftRightBigStepB;
+			this.leftRightStep = this.leftRightStepB;
+
+			this.right = this.rightB;
+			this.rightLeftBigStep = this.rightLeftBigStepB;
+			this.rightLeftStep =this.rightLeftStepB;
+			this.rightRightBigStep = this.rightRightBigStepB;
+			this.rightRightStep = this.rightRightStepB;
+
+			this.back =this.backB;
+			this.backLeftBigStep = this.backLeftBigStepB;
+			this.backLeftStep = this.backLeftBigStepB;
+			this.backRightBigStep = this.backRightBigStepB;
+			this.backRightStep = this.backRightStepB;
+
+
+			
+
+		} else if (Gdx.input.isKeyPressed(Keys.K)) {
+			this.front =this.frontD;
+			this.frontLeftBigStep =this.frontLeftBigStepD;
+			this.frontLeftStep = this.frontLeftStepD;
+			this.frontRightBigStep =this.frontRightBigStepD;
+			this.frontRightStep = this.frontRightStepD;
+
+			this.left =this.leftD;
+			this.leftLeftBigStep = this.leftLeftBigStepD;
+			this.leftLeftStep = this.leftLeftStepD;
+			this.leftRightBigStep =this.leftRightBigStepD;
+			this.leftRightStep = this.leftRightStepD;
+
+			this.right = this.rightD;
+			this.rightLeftBigStep = this.rightLeftBigStepD;
+			this.rightLeftStep =this.rightLeftStepD;
+			this.rightRightBigStep = this.rightRightBigStepD;
+			this.rightRightStep = this.rightRightStepD;
+
+			this.back =this.backD;
+			this.backLeftBigStep = this.backLeftBigStepD;
+			this.backLeftStep = this.backLeftBigStepD;
+			this.backRightBigStep = this.backRightBigStepD;
+			this.backRightStep = this.backRightStepD;
+
+
+			
+
+		} else if (Gdx.input.isKeyPressed(Keys.R)) {
+			this.front =this.frontB;
+			this.frontLeftBigStep =this.frontLeftBigStepB;
+			this.frontLeftStep = this.frontLeftStepB;
+			this.frontRightBigStep =this.frontRightBigStepB;
+			this.frontRightStep = this.frontRightStepB;
+
+			this.left =this.leftB;
+			this.leftLeftBigStep = this.leftLeftBigStepB;
+			this.leftLeftStep = this.leftLeftStepB;
+			this.leftRightBigStep =this.leftRightBigStepB;
+			this.leftRightStep = this.leftRightStepB;
+
+			this.right = this.rightB;
+			this.rightLeftBigStep = this.rightLeftBigStepB;
+			this.rightLeftStep =this.rightLeftStepB;
+			this.rightRightBigStep = this.rightRightBigStepB;
+			this.rightRightStep = this.rightRightStepB;
+
+			this.back =this.backB;
+			this.backLeftBigStep = this.backLeftBigStepB;
+			this.backLeftStep = this.backLeftBigStepB;
+			this.backRightBigStep = this.backRightBigStepB;
+			this.backRightStep = this.backRightStepB;
+
+
+			
+
+		}
 	}
 
 	private void moveLeft() {

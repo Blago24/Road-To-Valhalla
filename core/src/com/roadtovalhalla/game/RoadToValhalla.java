@@ -1,7 +1,14 @@
 package com.roadtovalhalla.game;
 
+import java.awt.RenderingHints.Key;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.security.auth.kerberos.KerberosKey;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.assets.AssetLoaderParameters.LoadedCallback;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -31,12 +38,15 @@ public class RoadToValhalla extends ApplicationAdapter {
 	public Textures loadTexturesForMap;
 	public SizesOfObjectsOnTheMap sizesOfObjectsOnTheMap;
 	public RenderBar bar;
-
+private char playerType ;
+public int playerChoice;
 	public InteracterPlayerMap interacterPlayerMap;
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
+		
+		
 		loadTexturesForMap = new Textures();
 		smallMap = new SmallMap();
 		smallMap.initializingSmallMap();
@@ -56,6 +66,8 @@ public class RoadToValhalla extends ApplicationAdapter {
 		bar = new RenderBar();
 	}
 
+	
+	
 	@Override
 	public void render() {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -82,7 +94,7 @@ public class RoadToValhalla extends ApplicationAdapter {
 						interacterPlayerMap.getColIndexForCurrentMap()),
 				batch, loadTexturesForMap, sizesOfObjectsOnTheMap);
 		bar.showBar(batch, loadTexturesForMap);
-
+		hero.choose();
 		batch.end();
 	}
 
